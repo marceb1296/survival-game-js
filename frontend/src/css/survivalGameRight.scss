@@ -1,0 +1,17 @@
+.right {
+    width: 35%;
+    height: 100vh;
+    background: red;
+    position: relative;
+    z-index: 1;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        width: 10%;
+        height: 100%;
+        right: 100%;
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 70% 100%);
+        background: red;
+    }
+}

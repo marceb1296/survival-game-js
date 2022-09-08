@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+
+  frontend:
+    image: mhcode/survivalgame
+    build:
+      context: ./frontend
+    # Uncoment this if you want test some features
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    ports:
+      - 3000:3000
+    
