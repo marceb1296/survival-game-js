@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import SurvivalGame from "./components/survivalGame";
 
 const initialValue = {
@@ -6,37 +6,69 @@ const initialValue = {
   rock: []
 }
 
+const place = ["l", "r"];
+
 function reducer(state, action) {
 
   const {type, payload} = action
   const randomID = () => Math.floor((Math.random() * 1000) + 1);
-  //var rand = myArray[~~(Math.random() * myArray.length)];
+  
+  const randomPlace = () => place[~~(Math.random() * place.length)];
 
   switch (type) {
     case "SET TREE":
       return {
         ...state,
-          tree: payload.tree
+          tree: [
+            ...state.tree,
+            {
+              id: randomID(),
+              place: randomPlace(),
+              pos_y: Math.floor(60),
+              pos_x: Math.floor(80)
+            }
+          ]
       }
 
     case "DEL TREE":
-      break;
+      return {
+          ...state,
+          tree: state.tree.filter(el => el !== payload.id)
+      }
     case "SET ROCK":
       return {
-        ...state,
-        tree: []
+          ...state,
+          rock: [
+            ...state.rock,
+            {
+               id: randomID(),
+               place: randomPlace(),
+               pos_y: Math.floor(80),
+               pos_x: Math.floor(68)
+            }
+          ]
       }
     case "DEL ROCK":
-      break;
-  
+        return {
+            ...state,
+            rock: state.rock.filter(el => el !== payload.id)
+        }
+    case "CLEAR ENV":
+    	return {
+    		tree: [],
+    		rock: []
+    	}
     default:
       throw new Error();
   }
 }
 
 function App() {
+    
+    const [state, dispatch] = useReducer(reducer, initialValue);
+    
   return (
-    <SurvivalGame />
+    <SurvivalGame state={state} dispatch={dispatch}/>
   );
 }
 

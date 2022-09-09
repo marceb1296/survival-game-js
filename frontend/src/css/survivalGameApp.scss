@@ -1,4 +1,9 @@
 .survival-container {
     display: flex;
-    background: blue;
+    flex-direction: column;
+    //background: blue;
+    
+    & .survival-container-layouts {
+    	display: flex;
+    }
 }
