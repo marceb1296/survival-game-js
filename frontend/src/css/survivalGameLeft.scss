@@ -1,5 +1,7 @@
 .survival-left {
     width: 35%;
+    height: 100vh;
+    //margin: 0 0 1em;
     background: green;
     position: relative;
     z-index: 1;
@@ -13,7 +15,7 @@
         & img {
             position: absolute;
             z-index: 1;
-            width: 40%;
+            width: 35%;
             height: auto;
         }
     }
