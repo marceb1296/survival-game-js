@@ -24,8 +24,8 @@ function reducer(state, action) {
             {
               id: randomID(),
               place: randomPlace(),
-              pos_y: Math.floor(60),
-              pos_x: Math.floor(80)
+              pos_y: Math.floor((Math.random() * 60) + 1),
+              pos_x: Math.floor((Math.random() * 80) + 1)
             }
           ]
       }
@@ -43,8 +43,8 @@ function reducer(state, action) {
             {
                id: randomID(),
                place: randomPlace(),
-               pos_y: Math.floor(80),
-               pos_x: Math.floor(68)
+               pos_y: Math.floor((Math.random() * 80) + 1),
+               pos_x: Math.floor((Math.random() * 68) + 1)
             }
           ]
       }

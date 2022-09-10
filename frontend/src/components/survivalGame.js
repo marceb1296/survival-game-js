@@ -15,7 +15,7 @@ const SurvivalGame = ({state, dispatch}) => {
                 <div className="survival-center"></div>
                 <SurvivalGameRight state={state}/>
             </div>
-            <SurvivalGameMenu />
+            <SurvivalGameMenu state={state} dispatch={dispatch}/>
         </div>
     );
 }

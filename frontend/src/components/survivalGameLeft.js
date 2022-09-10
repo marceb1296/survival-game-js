@@ -2,30 +2,28 @@ import "../css/survivalGameLeft.scss";
 
 const SurvivalGameLeft = ({state}) => {
     
-    const getHeight = () => window.innerHeight
+    const handleClickDel = (id) => {
+    	alert(id)
+    }
 
-    const makeTree = (id, x, y) => {
         // max top 60%
         // max left 80%
-        return <img id={"tree-" + id} style={{left: x + "%", top: y + "%"}} src="/tree_left.png" alt="tree"></img>
-    }
-    const makeRock = (id, x, y) => {
+    const makeTree = (id, x, y) => <img onClick={() => handleClickDel(id)} id={"tree-" + id} style={{left: x + "%", top: y + "%"}} src="/tree_left.png" alt="tree"></img>
+    
         // max top 80%
         // max right 68
-        return <img id={"tree-" + id} style={{left: x + "%", top: y + "%"}} src="/rock_left.png" alt="tree"></img>
-    }
+    const makeRock = (id, x, y) => <img onClick={() => handleClickDel(id)} id={"tree-" + id} style={{left: x + "%", top: y + "%"}} src="/rock_left.png" alt="tree"></img>
 
-
-
+    console.log(state.tree, state.tree.length)
     return ( 
         <div className="survival-left">
             <div className="left-container">
-                { state.tree.lenght > 0 &&
-                    state.tree.filter(el => el.place === "l").map(el => makeTree(el.id, el.place_x, el.place_y))
+                { state.tree.length > 0 &&
+                    state.tree.filter(el => el.place === "l").map(el => makeTree(el.id, el.pos_x, el.pos_y))
                 }
                 {
-                    state.tree.lenght > 0 &&
-                    state.tree.filter(el => el.place === "l").map(el => makeRock(el.id, el.place_x, el.place_y))
+                    state.rock.length > 0 &&
+                    state.rock.filter(el => el.place === "l").map(el => makeRock(el.id, el.pos_x, el.pos_y))
                 }
             </div>
         </div>

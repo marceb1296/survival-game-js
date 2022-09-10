@@ -1,29 +1,25 @@
 import "../css/survivalGameRight.scss";
 
-const SurvivalGameRight = () => {
+const SurvivalGameRight = ({state}) => {
     
     const getHeight = () => window.innerHeight
 
-    const makeTree = () => {
-        // max top 60%
-        // max right 80%
-        return <img style={{right: "80%", top: "60%"}} src="/tree_right.png" alt="tree"></img>
-    }
-    const makeRock = () => {
+    const makeTree = (id, x, y) => <img id={"tree-" + id} style={{right: x + "%", top: y + "%"}} src="/tree_right.png" alt="tree"></img>
+    
         // max top 80%
         // max right 68
-        return <img style={{right: "68%", top: "80%"}} src="/rock_right.png" alt="tree"></img>
-    }
+    const makeRock = (id, x, y) => <img id={"tree-" + id} style={{right: x + "%", top: y + "%"}} src="/tree_right.png" alt="tree"></img>
 
-
+    console.log(state.tree, state.tree.length)
     return ( 
-        <div className="survival-right">
-            <div className="right-container">
-                {
-                    makeTree()
+        <div className="survival-left">
+            <div className="left-container">
+                { state.tree.length > 0 &&
+                    state.tree.filter(el => el.place === "r").map(el => makeTree(el.id, el.pos_x, el.pos_y))
                 }
                 {
-                    makeRock()
+                    state.rock.length > 0 &&
+                    state.rock.filter(el => el.place === "r").map(el => makeRock(el.id, el.pos_x, el.pos_y))
                 }
             </div>
         </div>

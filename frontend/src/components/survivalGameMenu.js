@@ -17,14 +17,15 @@ const SurvivalGameMenu = ({state, dispatch}) => {
     	
     	await new Promise(r => setTimeout(r, 500));
     	
-    	const tree = () => probability_tree[~~(Math.random() * probability_tree.length)];
-    	const rock = () => probability_rock[~~(Math.random() * probability_rock.length)];
+    	const tree = probability_tree[~~(Math.random() * probability_tree.length)];
+    	const rock = probability_rock[~~(Math.random() * probability_rock.length)];
     	
     	if (tree > 0) {
-    		for (let i = 0; i < tree; i++)
-    		dispatch({
-    			type: "SET TREE"
-    		})
+    		for (let i = 0; i < tree; i++) {
+     		    dispatch({
+    			    type: "SET TREE"
+    		    })
+    		}
     	}
     	
     	if (rock > 0) {
