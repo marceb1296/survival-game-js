@@ -1,8 +1,8 @@
 import "../css/survivalGameApp.scss";
 import "../css/survivalGameCenter.scss";
-import SurvivalGameLeft from "../components/survivalGameLeft";
-import SurvivalGameRight from "./survivalGameRight";
 import SurvivalGameMenu from "./survivalGameMenu";
+import SurvivalGamePlayer from "./survivalGamePlayer";
+import SurvivalGameSides from "./survivalGameSides";
 
 const SurvivalGame = ({state, dispatch}) => {
     
@@ -10,12 +10,12 @@ const SurvivalGame = ({state, dispatch}) => {
     return (
         <div className="survival-container">
             <div className="survival-container-layouts">
-            
-                <SurvivalGameLeft state={state}/>
+                <SurvivalGameSides state={state} dispatch={dispatch} side="left" />              
                 <div className="survival-center"></div>
-                <SurvivalGameRight state={state}/>
+                <SurvivalGameSides state={state} dispatch={dispatch} side="right" />
             </div>
             <SurvivalGameMenu state={state} dispatch={dispatch}/>
+            <SurvivalGamePlayer state={state}/>
         </div>
     );
 }

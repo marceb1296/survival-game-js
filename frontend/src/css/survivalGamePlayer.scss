@@ -1,0 +1,23 @@
+.survival-player {
+	width: 100%;
+    height: auto;
+    left: -.5%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    font-size: .7em;
+
+    & .survival-state, .survival-materials {
+        
+        & label {
+            width: 130%;
+            display: flex;
+            justify-content: space-between;
+
+            & progress {
+                width: 70%;
+            }
+        }
+	}
+
+}

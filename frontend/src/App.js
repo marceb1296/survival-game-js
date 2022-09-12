@@ -3,7 +3,8 @@ import SurvivalGame from "./components/survivalGame";
 
 const initialValue = {
   tree: [],
-  rock: []
+  rock: [],
+  items: []
 }
 
 const place = ["l", "r"];
@@ -12,7 +13,6 @@ function reducer(state, action) {
 
   const {type, payload} = action
   const randomID = () => Math.floor((Math.random() * 1000) + 1);
-  
   const randomPlace = () => place[~~(Math.random() * place.length)];
 
   switch (type) {
@@ -29,11 +29,10 @@ function reducer(state, action) {
             }
           ]
       }
-
     case "DEL TREE":
       return {
           ...state,
-          tree: state.tree.filter(el => el !== payload.id)
+          tree: state.tree.filter(el => el.id !== payload.id)
       }
     case "SET ROCK":
       return {
@@ -49,15 +48,25 @@ function reducer(state, action) {
           ]
       }
     case "DEL ROCK":
-        return {
-            ...state,
-            rock: state.rock.filter(el => el !== payload.id)
-        }
-    case "CLEAR ENV":
+      return {
+          ...state,
+          rock: state.rock.filter(el => el.id !== payload.id)
+      }
+    case "ADD ITEM":
+      const findItem = state.items.filter(el => el.hasOwnProperty(payload.item));
     	return {
-    		tree: [],
-    		rock: []
-    	}
+    		...state,
+        items: findItem.length > 0 ?
+          (state.items.map(el => el.hasOwnProperty(payload.item) ? 
+            {[payload.item]: el[payload.item] + payload.amount}
+            :
+            el))
+          :
+          [
+            ...state.items,
+            {[payload.item]: payload.amount}
+          ]
+    	} 
     default:
       throw new Error();
   }
