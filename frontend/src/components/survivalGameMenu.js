@@ -89,8 +89,12 @@ const SurvivalGameMenu = ({state, dispatch}) => {
     
     
     return (
-        <div className="survival-menu">
+        <div className="survival-menu-main">
+            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Bonfire" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Cook" }</button>
             <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Env" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Eat" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Cottage" }</button>
         </div>
     )
 }

@@ -30,7 +30,6 @@ const SurvivalGamePlayer = ({state}) => {
             }, 3000);
 
             if (life === 0) {
-                console.log("clean life")
                 // Game Over
                 clearInterval(intervalLife);
             }
@@ -46,7 +45,8 @@ const SurvivalGamePlayer = ({state}) => {
         <div className="survival-player">
             <div className="survival-materials">
                 <p>
-                    { state.items.map((item, index) => <label key={index}>{Object.keys(item)[0]}:
+                    { state.items.map((item, index) => <label key={index}>
+                        <span>{Object.keys(item)[0]}: </span>
                         <span>{Object.values(item)[0]}</span>
                     </label>)
 
@@ -55,13 +55,15 @@ const SurvivalGamePlayer = ({state}) => {
             </div>
             <div className="survival-state">
                 <p>
-                    <label>Life: 
+                    <label>
+                        <span>Life: </span>
                         <progress value={life} max="100"></progress>
-                        {life}%
+                        <span>{life}%</span>
                     </label>
-                    <label>food: 
+                    <label>
+                        <span>Food: </span> 
                         <progress value={food} max="100"></progress>
-                        {food}%
+                        <span>{food}%</span>
                     </label>
                 </p>
             </div>

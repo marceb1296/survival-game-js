@@ -5,19 +5,41 @@
     position: absolute;
     display: flex;
     justify-content: space-around;
-    font-size: .7em;
+    font-size: .7rem;
 
-    & .survival-state, .survival-materials {
-        
+    & .survival-state {
+        width: 100%;
+        text-align: center;
+        //display: flex;
+        //align-items: center;
         & label {
-            width: 130%;
+            width: 100%;
             display: flex;
+            gap: 5px;
+            //align-items: center;
             justify-content: space-between;
 
+            & span {
+              width: 15%;
+              text-align: left;
+              //font-size: .5rem;
+            }
             & progress {
-                width: 70%;
+                //text-align: center;
+                width: 60%;
             }
         }
+	}
+	
+	& .survival-materials {
+	    width: 100%;
+	    //text-align: center;
+	    
+	    & label {
+	        display: flex;
+	        justify-content: center;
+	        gap: 10px;
+	    }
 	}
 
 }

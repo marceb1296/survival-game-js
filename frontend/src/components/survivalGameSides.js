@@ -1,4 +1,9 @@
+import {
+	woodAmount,
+	stoneAmount
+} from "../dataValues/survivalGameValues";
 import "../css/survivalGameSides.scss";
+
 
 const SurvivalGameSides = ({state, dispatch, side}) => {
     
@@ -17,7 +22,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                 type: "ADD ITEM",
                 payload: {
                     item: "wood",
-                    amount: 3
+                    amount: woodAmount
                 }
             })
         } else if (type === "rock") {
@@ -25,7 +30,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                 type: "ADD ITEM",
                 payload: {
                     item: "stone",
-                    amount: 2
+                    amount: stoneAmount
                 }
             })
         }

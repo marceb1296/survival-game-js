@@ -1,6 +1,12 @@
-.survival-menu {
+.survival-menu-main {
 	background: gray;
 	width: 100%;
+	display: flex;
+	justify-content: space-around;
 	position: absolute;
 	bottom: 0;
+	
+	& button {
+		width: 18%;;
+	}
 }
