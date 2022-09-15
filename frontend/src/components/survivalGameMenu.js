@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "../css/survivalGameMenu.scss";
+import {
+    probability_tree,
+    probability_rock
+} from "../dataValues/survivalGameValues";
 
 const SurvivalGameMenu = ({state, dispatch}) => {
 	
@@ -7,10 +11,6 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 	const initialCountDown = 3;
 	const [disableSurvivalButtons, setDisableSurvivalButtons] = useState(false);
 	const [countdown, setCountdown] = useState(initialCountDown);
-
-	// probabilitys
-	const probability_tree = [0, 0, 1, 0, 0, 2, 0, 0, 1, 0];
-    const probability_rock = [0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
     
 	// hooks 
 	useEffect(() => {

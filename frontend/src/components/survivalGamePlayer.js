@@ -10,15 +10,15 @@ const SurvivalGamePlayer = ({state}) => {
 
     useEffect(() => {
 
-        const inteval = setInterval(() => {
+        const interval = setInterval(() => {
             setFood(el => el - 1)
         }, 3000);
 
         if (food === 0) {
-            clearInterval(inteval);
+            clearInterval(interval);
         }
     
-        return () => clearInterval(inteval);
+        return () => clearInterval(interval);
     }, [food, setFood]);
 
     useEffect(() => {
