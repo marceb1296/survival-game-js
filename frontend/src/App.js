@@ -5,7 +5,8 @@ const initialValue = {
   tree: [],
   rock: [],
   items: [{wood:50}, {stone:50}],
-  crafts: []
+  crafts: [],
+  notifys: []
 }
 
 const defaultLifeTool = 100;
@@ -86,7 +87,6 @@ function reducer(state, action) {
         )
       }
     case "ADD CRAFT":
-
       const findCraft = state.crafts.filter(el => el.name === payload.craft);
 
       return {
@@ -110,6 +110,16 @@ function reducer(state, action) {
           }
         ]
       }
+    case "SET NOTIFY":
+        return {
+            ...state,
+            notifys: [
+                ...state.notifys,
+                {
+                    1
+                }
+            ]
+        }
     default:
       throw new Error();
   }

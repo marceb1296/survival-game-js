@@ -5,6 +5,7 @@ import SurvivalGameItems from "./survivalGameItems";
 import SurvivalGameMenu from "./survivalGameMenu";
 import SurvivalGamePlayer from "./survivalGamePlayer";
 import SurvivalGameSides from "./survivalGameSides";
+import SurvivalGameNotify from "./survivalGameNotify";
 
 const SurvivalGame = ({state, dispatch}) => {
 
@@ -43,6 +44,7 @@ const SurvivalGame = ({state, dispatch}) => {
             <SurvivalGameMenu state={state} dispatch={dispatch}/>
             <SurvivalGamePlayer state={state}/>
             <SurvivalGameItems state={state}/>
+            <SurvivalGameNotify state={state}/>
         </div>
     );
 }
