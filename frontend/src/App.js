@@ -4,8 +4,11 @@ import SurvivalGame from "./components/survivalGame";
 const initialValue = {
   tree: [],
   rock: [],
-  items: []
+  items: [{wood:50}, {stone:50}],
+  crafts: []
 }
+
+const defaultLifeTool = 100;
 
 const place = ["l", "r"];
 
@@ -57,16 +60,56 @@ function reducer(state, action) {
     	return {
     		...state,
         items: findItem.length > 0 ?
-          (state.items.map(el => el.hasOwnProperty(payload.item) ? 
-            {[payload.item]: el[payload.item] + payload.amount}
-            :
-            el))
+          (
+            state.items.map(el => el.hasOwnProperty(payload.item) ? 
+              {[payload.item]: el[payload.item] + payload.amount}
+              :
+              el
+            )
+          )
           :
           [
             ...state.items,
             {[payload.item]: payload.amount}
           ]
     	} 
+    case "DEL ITEM":
+      return {
+        ...state,
+        items: state.items.filter(el => Object.keys(el)[0] !== payload.name)
+      }
+    case "REST MATERIALS":
+      return {
+        ...state,
+        items: state.items.map(
+          el => Object.keys(el)[0] === payload.name ? {[payload.name]: Object.values(el)[0] - payload.amount} : el
+        )
+      }
+    case "ADD CRAFT":
+
+      const findCraft = state.crafts.filter(el => el.name === payload.craft);
+
+      return {
+        ...state,
+        crafts: findCraft.length > 0 ?
+          (
+            state.crafts.map(el => el.name === payload.craft ? 
+              {...el, ["amount"]: el.amount + payload.amount}
+              :
+              el
+            )
+          )
+        :
+        [
+          ...state.crafts,
+          {
+            name: payload.craft,
+            id: randomID(),
+            life: defaultLifeTool,
+            amount: 1
+          }
+        ]
+      }
     default:
       throw new Error();
   }

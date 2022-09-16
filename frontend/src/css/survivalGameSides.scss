@@ -17,6 +17,7 @@
             height: auto;
             animation: fadeIn 1s ease-in-out;
             opacity: 1;
+            cursor: pointer;
 
             &.fadeOut {
                 animation: fadeOut 1s ease-in-out;
@@ -55,6 +56,7 @@
             animation: fadeIn 1s ease-in-out;
             transition: opacity 1s ease-in-out;
             opacity: 1;
+            cursor: pointer;
 
             &.fadeOut {
                 animation: fadeOut 1s ease-in-out;

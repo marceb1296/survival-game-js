@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import "../css/survivalGameMenu.scss";
 import {
     probability_tree,
-    probability_rock
+    probability_rock,
+	bonfire_build
 } from "../dataValues/survivalGameValues";
+import { existsMaterial, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenu = ({state, dispatch}) => {
 	
@@ -86,11 +88,62 @@ const SurvivalGameMenu = ({state, dispatch}) => {
     		})
     	}
     }
+
+	const handleClickBonfire = (e) => {
+		
+		e.preventDefault();
+		disableBtns();
+		
+		let status = true;
+
+		const [wood_amount, stone_amount] = bonfire_build;
+		const wood = existsMaterial([...state.items], "wood");
+		const stone = existsMaterial([...state.items], "stone");
+
+		if (wood.wood < wood_amount) {
+			state = false;
+			console.log(materialNeeded(wood, "wood", wood_amount))
+		}
+		if (stone.stone < stone_amount) {
+			state = false;
+			console.log(materialNeeded(stone, "stone", stone_amount))
+		}
+
+		if (!state) {
+			console.log("need rss");
+			return;
+		}
+
+		dispatch({
+			type: "REST MATERIALS",
+			payload: {
+				name: "wood",
+				amount: wood_amount
+			}
+		})
+		
+		dispatch({
+			type: "REST MATERIALS",
+			payload: {
+				name: "stone",
+				amount: stone_amount
+			}
+		})
+
+		dispatch({
+			type: "ADD CRAFT",
+			payload: {
+				craft: "bonfire",
+				amount: 1
+			}
+		})
+
+	}
     
     
     return (
         <div className="survival-menu-main">
-            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Bonfire" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickBonfire}>{ disableSurvivalButtons ? countdown : "Bonfire" }</button>
             <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Cook" }</button>
             <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Env" }</button>
             <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Eat" }</button>

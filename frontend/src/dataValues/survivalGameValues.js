@@ -89,7 +89,8 @@ export const fist_damage = 5;
 // game state
 export const state = false;
 // bonfire
-export const campfire_state = false;
+export const bonfire_build = [10, 10];
+export const bonfire_state = false;
 // cottage
 export const cottage_show = 0;
 export const state_cottage = false;
@@ -99,5 +100,5 @@ export const probability_eat_damage = [0, 1, 0];
 export const probability_anm = [0, 1, 0, 0, 0];
 export const probability_cabaña = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0];
 export const probability_tree = [0, 0, 1, 0, 0, 2, 0, 0, 1, 0];
-export const probability_stone = [0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
+export const probability_rock = [0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
 

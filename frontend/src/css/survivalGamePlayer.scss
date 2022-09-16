@@ -5,7 +5,7 @@
     position: absolute;
     display: flex;
     justify-content: space-around;
-    font-size: .7rem;
+    font-size: .8rem;
 
     & .survival-state {
         width: 100%;
@@ -22,6 +22,7 @@
             & span {
               width: 15%;
               text-align: left;
+              font-weight: bold;
               //font-size: .5rem;
             }
             & progress {
@@ -39,6 +40,7 @@
 	        display: flex;
 	        justify-content: center;
 	        gap: 10px;
+            font-weight: bold;
 	    }
 	}
 
