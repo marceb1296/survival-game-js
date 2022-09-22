@@ -2,24 +2,36 @@ import React, { useReducer } from 'react';
 import SurvivalGame from "./components/survivalGame";
 
 const initialValue = {
+  life: 70,
+  food: 80,
   tree: [],
   rock: [],
-  items: [{wood:50}, {stone:50}],
+  items: [{name: "meat", amount: 10}, {name: "wood", amount:20}, {name: "stone", amount: 20}],
   crafts: [],
   notifys: []
 }
 
 const defaultLifeTool = 100;
-
+const randomID = () => Math.floor((Math.random() * 1000) + 1);
+const randomPlace = () => place[~~(Math.random() * place.length)];
+const restRandomLife = (life) => life < 10 ? Math.floor((Math.random() * (life * 3)) + 1) : Math.floor((Math.random() * life) + 1);
 const place = ["l", "r"];
 
 function reducer(state, action) {
 
   const {type, payload} = action
-  const randomID = () => Math.floor((Math.random() * 1000) + 1);
-  const randomPlace = () => place[~~(Math.random() * place.length)];
 
   switch (type) {
+    case "SET LIFE":
+      return {
+        ...state, 
+        life: payload.life
+      }
+    case "SET FOOD":
+      return {
+        ...state, 
+        food: payload.food
+      }
     case "SET TREE":
       return {
         ...state,
@@ -57,33 +69,37 @@ function reducer(state, action) {
           rock: state.rock.filter(el => el.id !== payload.id)
       }
     case "ADD ITEM":
-      const findItem = state.items.filter(el => el.hasOwnProperty(payload.item));
-    	return {
-    		...state,
+      const findItem = state.items.filter(el => el.name === payload.item);
+
+      return {
+        ...state,
         items: findItem.length > 0 ?
           (
-            state.items.map(el => el.hasOwnProperty(payload.item) ? 
-              {[payload.item]: el[payload.item] + payload.amount}
+            state.items.map(el => el.name === payload.item ? 
+              {...el, ["amount"]: el.amount + payload.amount}
               :
               el
             )
           )
-          :
-          [
-            ...state.items,
-            {[payload.item]: payload.amount}
-          ]
-    	} 
+        :
+        [
+          ...state.items,
+          {
+            name: payload.item,
+            amount: 1
+          }
+        ]
+      }
     case "DEL ITEM":
       return {
         ...state,
-        items: state.items.filter(el => Object.keys(el)[0] !== payload.name)
+        items: state.items.filter(el => el.name !== payload.name)
       }
-    case "REST MATERIALS":
+    case "REST ITEM":
       return {
         ...state,
         items: state.items.map(
-          el => Object.keys(el)[0] === payload.name ? {[payload.name]: Object.values(el)[0] - payload.amount} : el
+          el => el.name === payload.name ? {...el, ["amount"]: el.amount - payload.amount} : el
         )
       }
     case "ADD CRAFT":
@@ -110,16 +126,34 @@ function reducer(state, action) {
           }
         ]
       }
-    case "SET NOTIFY":
+    case "REST CRAFT LIFE":
+      return {
+        ...state,
+        crafts: state.crafts.map(
+          el => el.name === payload.craft ? {...el, life: el.life - restRandomLife(el.life)} : el
+        )
+      }
+    case "DEL CRAFT":
+      return {
+        ...state,
+        crafts: state.crafts.filter(el => el.name !== payload.craft)
+      }
+    case "ADD NOTIFY":
         return {
             ...state,
             notifys: [
                 ...state.notifys,
                 {
-                    1
+                    message: payload.message,
+                    id: randomID()
                 }
             ]
         }
+    case "DEL NOTIFY":
+      return {
+        ...state,
+        notifys: state.notifys.filter(el => el.id !== payload.id)
+      }
     default:
       throw new Error();
   }
@@ -127,7 +161,7 @@ function reducer(state, action) {
 
 function App() {
     
-    const [state, dispatch] = useReducer(reducer, initialValue);
+  const [state, dispatch] = useReducer(reducer, initialValue);
     
   return (
     <SurvivalGame state={state} dispatch={dispatch}/>

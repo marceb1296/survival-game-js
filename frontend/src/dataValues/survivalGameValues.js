@@ -101,4 +101,8 @@ export const probability_anm = [0, 1, 0, 0, 0];
 export const probability_cabaña = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0];
 export const probability_tree = [0, 0, 1, 0, 0, 2, 0, 0, 1, 0];
 export const probability_rock = [0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
-
+// food eated
+export const food_cooked_meat = 20;
+export const food_meat = 5;
+export const probability_rotten_food = [0, 1]
+export const rest_life_by_rotten_food = () =>  Math.floor((Math.random() * 25) + 1);

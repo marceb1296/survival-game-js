@@ -1,15 +1,27 @@
 .survival-notify-container {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    font-size: 3rem;
+    width: 100%;
+    font-size: calc(1vw + 1vh + 2vmin);
     color: yellow;
-    height: 9em;
-    background: pink;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    //width: 50%;
+    //height: 40%;
+    transform: translate(-50%, -40%);
     
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+
+    & label.fadeIn {
+        transition: opacity 1s ease-in-out;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    & label.fadeOut {
+        transition: opacity 1s ease-in-out;
+        animation: fadeOut 1s ease-in-out;
+      }
     
 }

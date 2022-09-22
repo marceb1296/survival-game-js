@@ -3,9 +3,13 @@ import "../css/survivalGameMenu.scss";
 import {
     probability_tree,
     probability_rock,
-	bonfire_build
+	bonfire_build,
+	food_cooked_meat,
+	probability_rotten_food,
+	rest_life_by_rotten_food,
+	food_meat
 } from "../dataValues/survivalGameValues";
-import { existsMaterial, materialNeeded } from '../helpers/SurvivalHelper';
+import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenu = ({state, dispatch}) => {
 	
@@ -43,7 +47,6 @@ const SurvivalGameMenu = ({state, dispatch}) => {
     const handleClickEn = async (e) => {
     	
     	e.preventDefault();
-
 		disableBtns();
 
 		state.tree.forEach(async el => {
@@ -93,29 +96,37 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 		
 		e.preventDefault();
 		disableBtns();
+		let notifys = [];
 		
 		let status = true;
 
 		const [wood_amount, stone_amount] = bonfire_build;
-		const wood = existsMaterial([...state.items], "wood");
-		const stone = existsMaterial([...state.items], "stone");
+		const wood = existsItem([...state.items], "wood");
+		const stone = existsItem([...state.items], "stone");
 
-		if (wood.wood < wood_amount) {
-			state = false;
-			console.log(materialNeeded(wood, "wood", wood_amount))
+		if (wood.amount < wood_amount) {
+			status = false;
+			notifys = [...notifys, materialNeeded(wood, wood_amount)]
+			
 		}
-		if (stone.stone < stone_amount) {
-			state = false;
-			console.log(materialNeeded(stone, "stone", stone_amount))
+		if (stone.amount < stone_amount) {
+			status = false;
+			notifys = [...notifys, materialNeeded(stone, stone_amount)]
+			
 		}
 
-		if (!state) {
-			console.log("need rss");
+		if (!status) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: notifys
+				}
+			})
 			return;
 		}
 
 		dispatch({
-			type: "REST MATERIALS",
+			type: "REST ITEM",
 			payload: {
 				name: "wood",
 				amount: wood_amount
@@ -123,7 +134,7 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 		})
 		
 		dispatch({
-			type: "REST MATERIALS",
+			type: "REST ITEM",
 			payload: {
 				name: "stone",
 				amount: stone_amount
@@ -138,16 +149,208 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 			}
 		})
 
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: ["Bonfire builded!"]
+			}
+		})
+
+	}
+
+	const handleClickCook = (e) => {
+		e.preventDefault();
+		disableBtns();
+
+		const hasBonfire = existsCraft(state.crafts, "bonfire");
+
+		if (!hasBonfire) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: ["Necesitas una fogata!"]
+				} 
+			})
+			return;
+		}
+
+		const { name, amount } = existsItem(state.items, "meat");
+
+		if (amount < 1) {
+			 
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: ["No tienes carne para cocinar!"]
+				} 
+			})
+			return;
+		}
+
+
+		dispatch({
+			type: "REST ITEM",
+			payload: {
+				name: "meat",
+				amount: 1
+			}
+		})
+
+		dispatch({
+			type: "ADD ITEM",
+			payload: {
+				item: "cooked meat",
+				amount: 1
+			}
+		})
+
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: ["Haz cocinado una pieza de carne!"]
+			} 
+		})
+
+		dispatch({
+			type: "REST CRAFT LIFE",
+			payload: {
+				craft: "bonfire"
+			}
+		})
+
+	}
+
+	const handleClickEat = (e) => {
+
+		e.preventDefault();
+		disableBtns();
+
+		const hasFood = existsItem(state.items, "meat");
+		const hasCockedFood = existsItem(state.items, "cooked meat");
+		
+		if (hasFood.amount < 1 && hasCockedFood.amount < 1) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: ["No tienes carne para comer!"]
+				}
+			})
+			return;
+		}
+
+		if (hasCockedFood.amount > 0) {
+			dispatch({
+				type: "REST ITEM",
+				payload: {
+					name: "cooked meat",
+					amount: 1
+				}
+			})
+
+			let foodAmount = state.food < 81 ? food_cooked_meat : (100 - state.food);
+		
+			dispatch({
+				type: "SET FOOD",
+				payload: {
+					food: state.food + foodAmount
+				}
+			})
+
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: [`+ ${foodAmount} de comida!`]
+				}
+			})
+
+			return;
+		}
+
+		if (hasFood.amount > 0) {
+			dispatch({
+				type: "REST ITEM",
+				payload: {
+					name: "meat",
+					amount: 1
+				}
+			})
+
+			const rotten_food = probability_rotten_food[~~(Math.random() * probability_rotten_food.length)];
+			
+			if (rotten_food > 0) {
+				
+				const rest_life = rest_life_by_rotten_food();
+				const lifeAmount = state.life - rest_life
+				let setNotifys = [
+					`- ${rest_life} de vida`,
+					"La hubiese cocinado mejor..."
+				];
+
+				dispatch({
+					type: "SET LIFE",
+					payload: {
+						life: lifeAmount
+					}
+				})
+
+				
+				dispatch({
+					type: "ADD NOTIFY",
+					payload: {
+						message: setNotifys
+					}
+				})
+
+				return;
+			}
+
+			const foodAmount = state.food < 96 ? food_meat : (100 - state.food);
+
+			dispatch({
+				type: "SET FOOD",
+				payload: {
+					food: state.food + foodAmount
+				}
+			})
+
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: [`+ ${foodAmount} de comida!`]
+				}
+			})
+
+		}
+
+	}
+
+	const handleClickAnmKill = (e) => {
+
+		e.preventDefault();
+		disableBtns();
+
+		const cottage = existsCraft(state.crats, "cottage");
+
+		if (!cottage) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: ["Necesitas una fogata!"]
+				} 
+			})
+			return;
+		}
+
 	}
     
     
     return (
         <div className="survival-menu-main">
             <button disabled={disableSurvivalButtons} onClick={handleClickBonfire}>{ disableSurvivalButtons ? countdown : "Bonfire" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Cook" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickCook}>{ disableSurvivalButtons ? countdown : "Cook" }</button>
             <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Env" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Eat" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Cottage" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickEat}>{ disableSurvivalButtons ? countdown : "Eat" }</button>
+            <button disabled={disableSurvivalButtons} onClick={handleClickAnmKill}>{ disableSurvivalButtons ? countdown : "Kill animal" }</button>
         </div>
     )
 }

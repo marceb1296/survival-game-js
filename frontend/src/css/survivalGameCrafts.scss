@@ -1,4 +1,4 @@
-.survival-items-container {
+.survival-crafts-container {
     position: absolute;
     bottom: 7%;
     width: 70%;
@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-around;
 
-    & .survival-items {
+    & .survival-crafts {
         width: 25%;
         height: auto;
         display: flex;
@@ -16,6 +16,10 @@
         opacity: 1;
         animation: fadeIn 1s ease-in-out;
         transition: opacity 1s ease-in-out;
+
+        &.fadeOut {
+            animation: fadeOut 2.1s ease-in-out;
+        }
     
         & img {
             width: 50%;
@@ -23,17 +27,8 @@
         }
 
         & progress {
-            //height: auto;
             width: 60%;
         }
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}

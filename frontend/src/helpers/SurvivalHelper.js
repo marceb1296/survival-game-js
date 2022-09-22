@@ -1,7 +1,10 @@
-export const existsMaterial = (items, item) => items.filter(el => Object.keys(el)[0] === item).length > 0 ? items.filter(el => Object.keys(el)[0] === item)[0] : {[item]: 0};//  ? Object.values(items.filter(el => Object.keys(el)[0] === item)[0])[0] : 0;
+export const existsItem = (items, item) => items.filter(el => el.name === item).length > 0 ? items.filter(el => el.name === item)[0] : {name: item, amount: 0};
 
-export const materialNeeded = (item, name, amount) => {
-    const { [name]: material } = item;
+export const existsCraft = (items, item) => items.filter(el => el.name === item).length > 0 ? 1 : 0;
 
-    return `Necesitas ${amount - material} de ${name}`
+export const materialNeeded = (item, amountMaterial) => {
+    const { name, amount } = item;
+
+    return `Necesitas ${amountMaterial - amount} de ${name}!`
 }
+

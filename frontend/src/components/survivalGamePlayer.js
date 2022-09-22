@@ -1,44 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import "../css/survivalGamePlayer.scss";
 
-const SurvivalGamePlayer = ({state}) => {
+const SurvivalGamePlayer = ({state, dispatch}) => {
 
-    const [life, setLife] = useState(2);
-    const [food, setFood] = useState(1);
 
     // handle events
 
     useEffect(() => {
 
         const interval = setInterval(() => {
-            setFood(el => el - 1)
+            dispatch({
+                type: "SET FOOD",
+                payload: {
+                    food: state.food - 1
+                }
+            })
         }, 3000);
 
-        if (food === 0) {
+        if (state.food < 1) {
             clearInterval(interval);
         }
     
         return () => clearInterval(interval);
-    }, [food, setFood]);
+    }, [state.food, dispatch]);
 
     useEffect(() => {
 
-        if (food === 0) {
+        if (state.food === 0) {
+
 
             const intervalLife = setInterval(() => {
-                setLife(el => el - 1);
+                dispatch({
+                    type: "SET LIFE",
+                    payload: {
+                        life: state.life - 1
+                    }
+                })
             }, 3000);
 
-            if (life === 0) {
+            if (state.life === 0) {
                 // Game Over
                 clearInterval(intervalLife);
             }
             
             return () => clearInterval(intervalLife);
         }
+
+        console.log("enter hooke")
+        // regenerate life if has enought food
+        if (state.food > 90 && state.life < 99) {
+
+            const interval = setInterval(() => {
+                dispatch({
+                    type: "SET LIFE",
+                    payload: {
+                        life: state.life + 2
+                    }
+                })
+                console.log("restore life")
+            }, 3000);
+
+            return () => clearInterval(interval);
+
+        } else if (state.food > 90 && state.life > 98 && state.life < 100) {
+            dispatch({
+                type: "SET LIFE",
+                payload: {
+                    life: state.life + (100 - state.life)
+                }
+            })
+        }
+
         
     
-    }, [food, setLife, life]);
+    }, [state.food, state.life, dispatch]);
 
 
     return (
@@ -46,8 +81,14 @@ const SurvivalGamePlayer = ({state}) => {
             <div className="survival-materials">
                 <p>
                     { state.items.map((item, index) => <label key={index}>
-                        <span>{Object.keys(item)[0]}: </span>
-                        <span>{Object.values(item)[0]}</span>
+                        <span>{item.name}: </span>
+                        <span>{item.amount}</span>
+                    </label>)
+
+                    }
+                    { state.crafts.map((item, index) => <label key={index}>
+                        <span>{item.name}: </span>
+                        <span>{item.amount}</span>
                     </label>)
 
                     }
@@ -57,13 +98,13 @@ const SurvivalGamePlayer = ({state}) => {
                 <p>
                     <label>
                         <span>Life: </span>
-                        <progress value={life} max="100"></progress>
-                        <span>{life}%</span>
+                        <progress value={state.life} max="100"></progress>
+                        <span>{state.life}%</span>
                     </label>
                     <label>
                         <span>Food: </span> 
-                        <progress value={food} max="100"></progress>
-                        <span>{food}%</span>
+                        <progress value={state.food} max="100"></progress>
+                        <span>{state.food}%</span>
                     </label>
                 </p>
             </div>
