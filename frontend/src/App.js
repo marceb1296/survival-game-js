@@ -1,14 +1,17 @@
 import React, { useReducer } from 'react';
 import SurvivalGame from "./components/survivalGame";
+import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
   life: 70,
   food: 80,
+  btns: false,
   tree: [],
   rock: [],
   items: [{name: "meat", amount: 10}, {name: "wood", amount:20}, {name: "stone", amount: 20}],
   crafts: [],
-  notifys: []
+  notifys: [],
+  anm: {}
 }
 
 const defaultLifeTool = 100;
@@ -25,12 +28,17 @@ function reducer(state, action) {
     case "SET LIFE":
       return {
         ...state, 
-        life: payload.life
+        life: payload.life < 0 ? 0 : payload.life
       }
     case "SET FOOD":
       return {
         ...state, 
         food: payload.food
+      }
+    case "HANDLE BTNS":
+      return {
+        ...state,
+        btns: !state.btns
       }
     case "SET TREE":
       return {
@@ -40,8 +48,8 @@ function reducer(state, action) {
             {
               id: randomID(),
               place: randomPlace(),
-              pos_y: Math.floor((Math.random() * 60) + 1),
-              pos_x: Math.floor((Math.random() * 80) + 1)
+              pos_y: Math.floor((Math.random() * 78) + 1),
+              pos_x: Math.floor((Math.random() * 99) + 1)
             }
           ]
       }
@@ -58,8 +66,8 @@ function reducer(state, action) {
             {
                id: randomID(),
                place: randomPlace(),
-               pos_y: Math.floor((Math.random() * 80) + 1),
-               pos_x: Math.floor((Math.random() * 68) + 1)
+               pos_y: Math.floor((Math.random() * 84) + 1),
+               pos_x: Math.floor((Math.random() * 99) + 1)
             }
           ]
       }
@@ -76,7 +84,7 @@ function reducer(state, action) {
         items: findItem.length > 0 ?
           (
             state.items.map(el => el.name === payload.item ? 
-              {...el, ["amount"]: el.amount + payload.amount}
+              {...el, amount: el.amount + payload.amount}
               :
               el
             )
@@ -99,7 +107,7 @@ function reducer(state, action) {
       return {
         ...state,
         items: state.items.map(
-          el => el.name === payload.name ? {...el, ["amount"]: el.amount - payload.amount} : el
+          el => el.name === payload.name ? {...el, amount: el.amount - payload.amount} : el
         )
       }
     case "ADD CRAFT":
@@ -110,7 +118,7 @@ function reducer(state, action) {
         crafts: findCraft.length > 0 ?
           (
             state.crafts.map(el => el.name === payload.craft ? 
-              {...el, ["amount"]: el.amount + payload.amount}
+              {...el, amount: el.amount + payload.amount}
               :
               el
             )
@@ -139,20 +147,48 @@ function reducer(state, action) {
         crafts: state.crafts.filter(el => el.name !== payload.craft)
       }
     case "ADD NOTIFY":
-        return {
-            ...state,
-            notifys: [
-                ...state.notifys,
-                {
-                    message: payload.message,
-                    id: randomID()
-                }
-            ]
-        }
+      return {
+          ...state,
+          notifys: [
+              ...state.notifys,
+              {
+                  message: payload.message,
+                  id: randomID()
+              }
+          ]
+      }
     case "DEL NOTIFY":
       return {
         ...state,
         notifys: state.notifys.filter(el => el.id !== payload.id)
+      }
+    case "SET ANM":
+      const anm = get_anm();
+
+      return {
+        ...state,
+        anm: {
+          name: anm,
+          id: randomID(),
+          place: randomPlace(),
+          pos_y: Math.floor((Math.random() * 65) + 1),
+          pos_x: Math.floor((Math.random() * 90) + 1),
+          totalLife: animals[anm].life,
+          ...animals[anm]
+        }
+      }
+    case "REST ANM LIFE":
+      return {
+        ...state,
+        anm: {
+          ...state.anm,
+          life: payload.life
+        }
+      }
+    case "DEL ANM":
+      return {
+        ...state,
+        anm: {}
       }
     default:
       throw new Error();

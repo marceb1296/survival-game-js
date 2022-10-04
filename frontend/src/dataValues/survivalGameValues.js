@@ -1,3 +1,5 @@
+// Random function
+const randomItem = (list) => list[~~(Math.random() * list.length)]; 
 // Game init
 export const healt = 100;
 export const hungry = 100;
@@ -62,13 +64,29 @@ export const shield_kneepads = 25;
 export const build_kneepads_cost = [10, 25, 10];
 
 // animals
-export const anm_show = 0;
+export const get_anm = () => randomItem(["ox", "wild_pig", "wolf"]);
 export const animals = {
-    "life": [120, 80, 90], 
-    "damage": [3, 5, 10], 
-    "leather": [10, 8, 5], 
-    "meat": [5, 3, 1], 
-    "rope": [5, 3, 2]
+    ox: {
+        "life": 120, 
+        "damage": 3, 
+        "leather": 10,
+        "meat": 5,
+        "rope": 5 
+    },
+    wild_pig: {
+        "life": 80, 
+        "damage": 5, 
+        "leather": 8,
+        "meat": 3,
+        "rope": 3 
+    },
+    wolf: {
+        "life": 90, 
+        "damage": 10, 
+        "leather": 5,
+        "meat": 1,
+        "rope": 2 
+    }
 };
 export const kill_anm_life = 0;
 export const kill_anm_damage = 0;
@@ -95,14 +113,14 @@ export const bonfire_state = false;
 export const cottage_show = 0;
 export const state_cottage = false;
 // Probabilitys
-export const probability_get_from_anm = [0, 1];
-export const probability_eat_damage = [0, 1, 0];
-export const probability_anm = [0, 1, 0, 0, 0];
-export const probability_cabaña = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0];
-export const probability_tree = [0, 0, 1, 0, 0, 2, 0, 0, 1, 0];
-export const probability_rock = [0, 0, 0, 0, 0, 1, 0, 0, 0, 1];
+export const probability_get_from_anm = () => randomItem([0, 1]);
+export const probability_eat_damage = () => randomItem([0, 1, 0]);
+export const probability_anm = () => randomItem([1, 1, 1, 1, 1]);
+export const probability_cabaña = () => randomItem([0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
+export const probability_tree = () => randomItem([2, 2, 1, 2, 2, 2, 2, 2, 1, 2]);
+export const probability_rock = () => randomItem([2, 2, 2, 2, 2, 1, 2, 2, 2, 1]);
 // food eated
 export const food_cooked_meat = 20;
 export const food_meat = 5;
-export const probability_rotten_food = [0, 1]
+export const probability_rotten_food = () => randomItem([0, 1])
 export const rest_life_by_rotten_food = () =>  Math.floor((Math.random() * 25) + 1);

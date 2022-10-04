@@ -1,30 +1,8 @@
 .survival-right {
     width: 35%;
-    height: 100vh;
     background: red;
     position: relative;
 
-    & .right-container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        
-        
-        & img {
-            position: absolute;
-            z-index: 4;
-            width: 35%;
-            height: auto;
-            animation: fadeIn 1s ease-in-out;
-            opacity: 1;
-            cursor: pointer;
-
-            &.fadeOut {
-                animation: fadeOut 1s ease-in-out;
-            }
-        }
-    }
-    
     &::after {
         content: "";
         position: absolute;
@@ -38,15 +16,27 @@
 
 .survival-left {
     width: 35%;
-    height: 100vh;
+    //height: 100%;
     background: green;
     position: relative;
 
-    & .left-container {
+    &::after {
+        content: "";
+        position: absolute;
+        width: 10%;
+        height: 100%;
+        left: 100%;
+        clip-path: polygon(0 0, 100% 0%, 30% 100%, 0% 100%);
+        background: green;
+    }
+}
+
+.survival-left, .survival-right {
+
+    & .side-container {
         position: absolute;
         width: 100%;
-        height: 100%;
-        
+        height: 100%;        
         
         & img {
             position: absolute;
@@ -62,17 +52,39 @@
                 animation: fadeOut 1s ease-in-out;
             }
         }
-    }
 
-    
-    &::after {
-        content: "";
-        position: absolute;
-        width: 10%;
-        height: 100%;
-        left: 100%;
-        clip-path: polygon(0 0, 100% 0%, 30% 100%, 0% 100%);
-        background: green;
+        & .anm-container {
+            position: absolute;
+            z-index: 4;
+            width: 35%;
+            animation: fadeIn 1s ease-in-out;
+            opacity: 1;
+            cursor: pointer;
+            transition: filter 1s ease;
+
+            &.fadeOut {
+                animation: fadeOut 1s ease-in-out;
+            }
+
+            &.active {
+                filter: brightness(10%);
+                pointer-events: none;
+            }
+
+            & img {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                left: 0;
+                top: 100%;
+            }
+
+            & progress {
+                opacity: 1;
+                width: 100%;
+                transition: opacity 1s ease;
+            }
+        }
     }
 }
 

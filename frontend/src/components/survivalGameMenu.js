@@ -7,7 +7,9 @@ import {
 	food_cooked_meat,
 	probability_rotten_food,
 	rest_life_by_rotten_food,
-	food_meat
+	food_meat,
+	probability_anm,
+	fist_damage
 } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
@@ -15,20 +17,22 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 	
 	// unable buttons on click for 3sec
 	const initialCountDown = 3;
-	const [disableSurvivalButtons, setDisableSurvivalButtons] = useState(false);
+	//const [disableSurvivalButtons, setDisableSurvivalButtons] = useState(false);
 	const [countdown, setCountdown] = useState(initialCountDown);
     
 	// hooks 
 	useEffect(() => {
 
-		if (disableSurvivalButtons) {
+		if (state.btns) {
 			const interval = setInterval(() => {
 				setCountdown(count => count - 1);
 			}, 1000);
 
 			if (countdown === 0) {
 				clearInterval(interval);
-				setDisableSurvivalButtons(state => !state);
+				dispatch({
+					type: "HANDLE BTNS"
+				})
 				setCountdown(initialCountDown);
 			}
 
@@ -37,11 +41,13 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 
 
 
-	}, [disableSurvivalButtons, countdown, setCountdown, initialCountDown]);
+	}, [state.btns, countdown, setCountdown, initialCountDown]);
 
     // events
 	const disableBtns = async () => {
-		setDisableSurvivalButtons(state => !state);
+		dispatch({
+			type: "HANDLE BTNS"
+		})
 	} 
 
     const handleClickEn = async (e) => {
@@ -59,6 +65,7 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 				}
 			})
 		});
+
 		state.rock.forEach(async el => {
 			document.getElementById("rock-" + el.id).classList.toggle("fadeOut");
 			await new Promise(r => setTimeout(r, 900));
@@ -69,12 +76,21 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 				}
 			})
 		});
+
+		if (Object.keys(state.anm).length > 0) {
+			const { id: anm_id } = state.anm;
+			document.getElementById("anm-container-" + anm_id).classList.toggle("fadeOut");
+			await new Promise(r => setTimeout(r, 900));
+			dispatch({
+				type: "DEL ANM"
+			})
+		}
     	
     	
     	await new Promise(r => setTimeout(r, 500));
     	
-    	const tree = probability_tree[~~(Math.random() * probability_tree.length)];
-    	const rock = probability_rock[~~(Math.random() * probability_rock.length)];
+    	const tree = probability_tree();
+    	const rock = probability_rock();
     	
     	if (tree > 0) {
     		for (let i = 0; i < tree; i++) {
@@ -85,11 +101,19 @@ const SurvivalGameMenu = ({state, dispatch}) => {
     	}
     	
     	if (rock > 0) {
-    		for (let i = 0; i < rock; i++)
-    		dispatch({
-    			type: "SET ROCK"
-    		})
+    		for (let i = 0; i < rock; i++) {
+				dispatch({
+					type: "SET ROCK"
+				})
+			}
     	}
+
+		if (probability_anm() > 0) {
+			console.log("has niaml")
+			dispatch({
+				type: "SET ANM"
+			})
+		}
     }
 
 	const handleClickBonfire = (e) => {
@@ -275,7 +299,7 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 				}
 			})
 
-			const rotten_food = probability_rotten_food[~~(Math.random() * probability_rotten_food.length)];
+			const rotten_food = probability_rotten_food();
 			
 			if (rotten_food > 0) {
 				
@@ -323,34 +347,15 @@ const SurvivalGameMenu = ({state, dispatch}) => {
 		}
 
 	}
-
-	const handleClickAnmKill = (e) => {
-
-		e.preventDefault();
-		disableBtns();
-
-		const cottage = existsCraft(state.crats, "cottage");
-
-		if (!cottage) {
-			dispatch({
-				type: "ADD NOTIFY",
-				payload: {
-					message: ["Necesitas una fogata!"]
-				} 
-			})
-			return;
-		}
-
-	}
     
     
     return (
         <div className="survival-menu-main">
-            <button disabled={disableSurvivalButtons} onClick={handleClickBonfire}>{ disableSurvivalButtons ? countdown : "Bonfire" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickCook}>{ disableSurvivalButtons ? countdown : "Cook" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickEn}>{ disableSurvivalButtons ? countdown : "Env" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickEat}>{ disableSurvivalButtons ? countdown : "Eat" }</button>
-            <button disabled={disableSurvivalButtons} onClick={handleClickAnmKill}>{ disableSurvivalButtons ? countdown : "Kill animal" }</button>
+            <button disabled={state.btns} onClick={handleClickBonfire}>{ state.btns ? countdown : "Bonfire" }</button>
+            <button disabled={state.btns} onClick={handleClickCook}>{ state.btns ? countdown : "Cook" }</button>
+            <button disabled={state.btns} onClick={handleClickEn}>{ state.btns ? countdown : "Env" }</button>
+            <button disabled={state.btns} onClick={handleClickEat}>{ state.btns ? countdown : "Eat" }</button>
+            
         </div>
     )
 }

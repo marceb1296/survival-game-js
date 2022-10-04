@@ -46,7 +46,6 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
             return () => clearInterval(intervalLife);
         }
 
-        console.log("enter hooke")
         // regenerate life if has enought food
         if (state.food > 90 && state.life < 99) {
 
