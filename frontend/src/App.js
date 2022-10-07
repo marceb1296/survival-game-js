@@ -3,12 +3,13 @@ import SurvivalGame from "./components/survivalGame";
 import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
+  layer_countdown: 3,
   life: 70,
   food: 80,
   btns: false,
   tree: [],
   rock: [],
-  items: [{name: "meat", amount: 10}, {name: "wood", amount:20}, {name: "stone", amount: 20}],
+  items: [{name: "meat", amount: 10}, {name: "wood", amount:100}, {name: "stone", amount: 300}],
   crafts: [],
   notifys: [],
   anm: {}
@@ -17,7 +18,7 @@ const initialValue = {
 const defaultLifeTool = 100;
 const randomID = () => Math.floor((Math.random() * 1000) + 1);
 const randomPlace = () => place[~~(Math.random() * place.length)];
-const restRandomLife = (life) => life < 10 ? Math.floor((Math.random() * (life * 3)) + 1) : Math.floor((Math.random() * life) + 1);
+
 const place = ["l", "r"];
 
 function reducer(state, action) {
@@ -39,6 +40,11 @@ function reducer(state, action) {
       return {
         ...state,
         btns: !state.btns
+      }
+    case "LAYER COUNTDOWN":
+      return {
+        ...state,
+        layer_countdown: payload.count
       }
     case "SET TREE":
       return {
@@ -138,7 +144,7 @@ function reducer(state, action) {
       return {
         ...state,
         crafts: state.crafts.map(
-          el => el.name === payload.craft ? {...el, life: el.life - restRandomLife(el.life)} : el
+          el => el.name === payload.craft ? {...el, life: payload.life} : el
         )
       }
     case "DEL CRAFT":

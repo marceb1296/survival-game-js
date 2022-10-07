@@ -1,17 +1,19 @@
 .survival-crafts-container {
     position: absolute;
-    bottom: 7%;
-    width: 70%;
+    bottom: 8%;
+    width: 60%;
+    height: 20%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: space-around;
 
     & .survival-crafts {
-        width: 25%;
+        width: 20%;
         height: auto;
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
         align-items: center;
         opacity: 1;
         animation: fadeIn 1s ease-in-out;

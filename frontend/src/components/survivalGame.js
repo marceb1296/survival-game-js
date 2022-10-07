@@ -33,7 +33,7 @@ const SurvivalGame = ({state, dispatch}) => {
 
         const delCraft = async (name, id) => {
 
-            const getCraft = document.getElementById(`crafts-${id}`).classList.toggle("fadeOut")
+            document.getElementById(`crafts-${id}`).classList.toggle("fadeOut")
             await new Promise(r => setTimeout(r, 2000));
             dispatch({
                 type: "DEL CRAFT",
@@ -41,9 +41,13 @@ const SurvivalGame = ({state, dispatch}) => {
                     craft: name
                 }
             })
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `- 1 ${name}!`
+                }
+            })
         }
-        
-        const itemDelete = [];
 
         state.crafts.forEach(el => {
             const { name, life, id } = el;
@@ -55,36 +59,6 @@ const SurvivalGame = ({state, dispatch}) => {
         })
         
     }, [state.crafts, dispatch]);
-
-    /*
-    // regenerate life if has enought food
-    useEffect(() => {
-        console.log("enter hook")
-        let interval;
-
-        if (state.food > 90 && state.life < 98) {
-            interval = setInterval(() => {
-                dispatch({
-                    type: "SET LIFE",
-                    payload: {
-                        life: state.life + 3
-                    }
-                })
-                console.log("restore life")
-            }, 3000);
-
-        } else if (state.food > 90 && state.life < 100) {
-            dispatch({
-                type: "SET LIFE",
-                payload: {
-                    life: state.life + (100 - state.life)
-                }
-            })
-        }
-        return () => interval !== undefined && clearInterval(interval);
-
-    }, [state.life, state.food, dispatch]);
-    */
     
     return (
         <div className="survival-container">

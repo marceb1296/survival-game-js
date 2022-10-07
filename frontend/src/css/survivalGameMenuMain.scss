@@ -1,5 +1,4 @@
 .survival-menu-main {
-	background: gray;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -7,6 +6,7 @@
 	bottom: 1%;
 	
 	& button {
-		width: 18%;;
+		width: 18%;
+		max-height: 25px;
 	}
 }

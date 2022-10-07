@@ -1,0 +1,17 @@
+.survival-menu-left {
+    height: 30%;
+    max-height: 20em;
+	width: 20%;
+    left: 1%;
+	display: flex;
+    flex-direction: column;
+	justify-content: space-around;
+	position: absolute;
+	bottom: 10%;
+	
+	& button {
+		width: 100%;
+        height: 50%;
+        max-height: 25px;
+	}
+}

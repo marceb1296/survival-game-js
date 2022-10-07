@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import "../css/survivalGamePlayer.scss";
 
 const SurvivalGamePlayer = ({state, dispatch}) => {
@@ -56,7 +56,12 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                         life: state.life + 2
                     }
                 })
-                console.log("restore life")
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `+ 2 de vida!`
+                    }
+                })
             }, 3000);
 
             return () => clearInterval(interval);

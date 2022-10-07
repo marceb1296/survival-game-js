@@ -37,7 +37,7 @@ export const axe_stone = 0;
 export const axe_stone_life = 100;
 export const build_axe_stone = [25, 15];
 // pickaxe only stone
-export const pickaxe_stone = 0;
+export const pickaxe_plus_amount = 3;
 export const pickaxe_stone_life = 100;
 export const build_pickaxe_stone = [25, 25];
 // knife

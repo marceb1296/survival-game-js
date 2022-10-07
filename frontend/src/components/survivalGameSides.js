@@ -4,23 +4,18 @@ import {
 	woodAmount,
 	stoneAmount,
     fist_damage,
-    state
+    pickaxe_plus_amount
 } from "../dataValues/survivalGameValues";
 import "../css/survivalGameSides.scss";
+import { existsCraft, restRandomLife } from '../helpers/SurvivalHelper';
 
 
 const SurvivalGameSides = ({state, dispatch, side}) => {
+
+    const handleImage = useRef();
     
     const handleClickDel = async (type, id) => {
-    	document.getElementById(`${type}-${id}`).classList.toggle("fadeOut");
-        await new Promise(r => setTimeout(r, 900));
-        dispatch({
-            type: `DEL ${type.toUpperCase()}`,
-            payload: {
-                id: id
-            }
-        })
-
+    	
         if (type === "tree") {
             dispatch({
                 type: "ADD ITEM",
@@ -29,17 +24,63 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                     amount: woodAmount
                 }
             })
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `+ ${woodAmount} de madera!`
+                }
+            })
         } else if (type === "rock") {
+            const {exist: existPickaxe, life: lifePickaxe} = existsCraft(state.crafts, "pickaxe");
+
+            if (existPickaxe) {
+
+                const restLifeCraft = restRandomLife(lifePickaxe);
+                dispatch({
+                    type: "REST CRAFT LIFE",
+                    payload: {
+                        craft: "pickaxe",
+                        life: lifePickaxe - restLifeCraft
+                    }
+                })
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `Pico: - ${restLifeCraft} de vida!`
+                    }
+                })
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `Pico: + ${pickaxe_plus_amount} de piedra!`
+                    }
+                })
+            }
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `+ ${stoneAmount} de piedra!`
+                }
+            })
             dispatch({
                 type: "ADD ITEM",
                 payload: {
                     item: "stone",
-                    amount: stoneAmount
+                    amount:  existPickaxe > 0 ? stoneAmount + pickaxe_plus_amount : stoneAmount
                 }
             })
         }
+
+        document.getElementById(`${type}-${id}`).classList.toggle("fadeOut");
+        await new Promise(r => setTimeout(r, 900));
+        dispatch({
+            type: `DEL ${type.toUpperCase()}`,
+            payload: {
+                id: id
+            }
+        })
+
     }
-    const handleImage = useRef();
 
     const handleClickAnmKill = async (e) => {
 
@@ -58,7 +99,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 				} 
 			});
 
-            const msg = [
+            const notifys = [
                 `Has echo ${fist_damage} de daño!`,
                 `Has recibido ${state.anm.damage} de daño!`
             ]
@@ -70,12 +111,12 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                 }
             })
 
-            dispatch({
+            notifys.forEach(el => dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: msg
+					message: el
 				} 
-			});
+			}));
 
             handleImage.current.classList.toggle("active")
             await new Promise(r => setTimeout(r, 3000));
@@ -108,7 +149,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
     return ( 
         <div className={`survival-${side}`}>
-            <div className={"side-container"}>
+            <div className="side-container">
                 { state.tree.length > 0 &&
                     state.tree.filter(el => el.place === (side === "left" ? "l" : "r")).map(el => makeTree(el.id, el.pos_x, el.pos_y))
                 }

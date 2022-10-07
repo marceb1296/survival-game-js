@@ -8,15 +8,13 @@
     font-size: .8rem;
 
     & .survival-state {
-        width: 100%;
+        width: 50%;
         text-align: center;
-        //display: flex;
-        //align-items: center;
+
         & label {
             width: 100%;
             display: flex;
             gap: 5px;
-            //align-items: center;
             justify-content: space-between;
 
             & span {
@@ -32,8 +30,16 @@
 	}
 	
 	& .survival-materials {
-	    width: 100%;
-	    //text-align: center;
+	    width: 50%;
+
+	    & p {
+            display: flex;
+            width: 90%;
+            margin-inline: 1em;
+            gap: 2px;
+            flex-flow: row wrap;
+            justify-content: space-around;
+        }
 	    
 	    & label {
 	        display: flex;
