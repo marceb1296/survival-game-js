@@ -9,7 +9,7 @@ const initialValue = {
   btns: false,
   tree: [],
   rock: [],
-  items: [{name: "meat", amount: 10}, {name: "wood", amount:100}, {name: "stone", amount: 300}],
+  items: [{name: "meat", amount: 10}, {name: "wood", amount:500}, {name: "stone", amount: 500}, {name: "leather", amount: 100}, {name: "rope", amount: 100}],
   crafts: [],
   notifys: [],
   anm: {}

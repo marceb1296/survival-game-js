@@ -55,13 +55,13 @@ export const leather = 0;
 export const rope = 0;
 // armors n | [n, n] | [n, n, n] => wood / leather / rope
 // upper armor
-export const shirtfront = 0;
-export const shield_shirtfront = 75;
-export const build_shirtfront_cost = [15, 50, 20];
+export const upper_body_armor = 0;
+export const shield_upper_body_armor = 75;
+export const build_upper_body_armor_cost = [15, 50, 20];
 // lower armor
-export const kneepads = 0;
-export const shield_kneepads = 25;
-export const build_kneepads_cost = [10, 25, 10];
+export const greaves_leg_armor = 0;
+export const shield_greaves_leg_armor = 25;
+export const build_greaves_leg_armor_cost = [10, 25, 10];
 
 // animals
 export const get_anm = () => randomItem(["ox", "wild_pig", "wolf"]);

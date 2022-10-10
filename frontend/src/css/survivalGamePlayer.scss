@@ -10,6 +10,7 @@
     & .survival-state {
         width: 50%;
         text-align: center;
+        margin-inline: .5em;
 
         & label {
             width: 100%;
@@ -31,12 +32,13 @@
 	
 	& .survival-materials {
 	    width: 50%;
+        font-size: .8em;
 
 	    & p {
             display: flex;
             width: 90%;
             margin-inline: 1em;
-            gap: 2px;
+            gap: 15px;
             flex-flow: row wrap;
             justify-content: space-around;
         }
@@ -44,7 +46,7 @@
 	    & label {
 	        display: flex;
 	        justify-content: center;
-	        gap: 10px;
+	        gap: 5px;
             font-weight: bold;
 	    }
 	}

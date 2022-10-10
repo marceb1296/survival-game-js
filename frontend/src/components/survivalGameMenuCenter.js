@@ -482,8 +482,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 				message: "Pickaxe builded!"
 			}
 		})
-	}
-    
+	}    
     
     return (
         <div className="survival-menu-main">
@@ -492,6 +491,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
             <button disabled={state.btns} onClick={handleClickEn}>{ state.btns ? state.layer_countdown : "Env" }</button>
             <button disabled={state.btns} onClick={handleClickEat}>{ state.btns ? state.layer_countdown : "Eat" }</button>
             <button disabled={state.btns} onClick={handleClickPickaxe}>{ state.btns ? state.layer_countdown : "Build pickaxe" }</button>
+           
             
         </div>
     )

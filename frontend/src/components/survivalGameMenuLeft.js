@@ -1,5 +1,5 @@
 import "../css/survivalGameMenuLeft.scss";
-import { build_knife } from "../dataValues/survivalGameValues";
+import { build_axe_wood, build_knife, build_knife_wood } from "../dataValues/survivalGameValues";
 import { existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenuLeft = ({state, dispatch}) => {
@@ -89,12 +89,115 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 			}
 		})
     }
+	
+    const handleClickKnifeWood = (e) => {
+        e.preventDefault();
+		disableBtns();
+
+		const wood_amount = build_knife_wood;
+		const wood = existsItem([...state.items], "wood");
+
+		if (wood.amount < wood_amount) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: materialNeeded(wood, wood_amount)
+				}
+			})
+			return;
+		
+		}
+
+		// has materials
+
+		dispatch({
+			type: "REST ITEM",
+			payload: {
+				name: "wood",
+				amount: wood_amount
+			}
+		})
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: `- ${wood_amount} de madera!`
+			}
+		})
+		
+
+		dispatch({
+			type: "ADD CRAFT",
+			payload: {
+				craft: "knife_wood",
+				amount: 1
+			}
+		})
+
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: "Wood knife builded!"
+			}
+		})
+    }
+
+	const handleClickAxe = (e) => {
+
+		e.preventDefault();
+		disableBtns();
+
+		const wood_amount = build_axe_wood;
+		const wood = existsItem([...state.items], "wood");
+
+		if (wood.amount < wood_amount) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: materialNeeded(wood, wood_amount)
+				}
+			})
+			return;
+		
+		}
+
+		// has materials
+
+		dispatch({
+			type: "REST ITEM",
+			payload: {
+				name: "wood",
+				amount: wood_amount
+			}
+		})
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: `- ${wood_amount} de madera!`
+			}
+		})
+		
+
+		dispatch({
+			type: "ADD CRAFT",
+			payload: {
+				craft: "axe_wood",
+				amount: 1
+			}
+		})
+
+		dispatch({
+			type: "ADD NOTIFY",
+			payload: {
+				message: "Wood axe builded!"
+			}
+		})
+	}
 
     return (
         <div className="survival-menu-left">
             <button disabled={state.btns} onClick={handleClickKnife}>{ state.btns ? state.layer_countdown : "Build knife" }</button>
-            <button disabled={state.btns} onClick={disableBtns}>{ state.btns ? state.layer_countdown : "Build wood knife" }</button>
-            
+            <button disabled={state.btns} onClick={handleClickKnifeWood}>{ state.btns ? state.layer_countdown : "Build wood knife" }</button>
+			<button disabled={state.btns} onClick={handleClickAxe}>{ state.btns ? state.layer_countdown : "Build axe" }</button>
         </div>
     );
 }
