@@ -136,15 +136,15 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
         // max top 78%
         // max left 100%
-    const makeTree = (id, x, y) => <img key={id} onClick={() => handleClickDel("tree", id)} id={"tree-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/tree_${side}.png`} alt="tree"></img>;
+    const makeTree = (id, x, y) => <img key={id} onClick={() => handleClickDel("tree", id)} id={"tree-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/tree_${side}.png`} alt="tree"></img>;
     
         // max top 84%
         // max right 100%
-    const makeRock = (id, x, y) => <img key={id} onClick={() => handleClickDel("rock", id)} id={"rock-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/rock_${side}.png`} alt="tree"></img>;
+    const makeRock = (id, x, y) => <img key={id} onClick={() => handleClickDel("rock", id)} id={"rock-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/rock_${side}.png`} alt="tree"></img>;
 
     const makeAnm = ({id, pos_x, pos_y, name, life, totalLife}) => <div ref={handleImage} onClick={handleClickAnmKill} className="anm-container" id={"anm-container-" + id} style={{[side]: pos_x + "%", top: pos_y + "%", transform: `translate(${side === "left" ? `-${pos_x}%` : `${pos_x}%`}, -${pos_y}%)`}}>
         <progress value={life} max={totalLife}></progress>
-        <img key={id} src={`/${name}.png`} alt={name}></img>
+        <img key={id} src={`/survival/${name}.png`} alt={name}></img>
     </div>;
 
     return ( 

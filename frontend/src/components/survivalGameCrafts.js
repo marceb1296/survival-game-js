@@ -10,7 +10,7 @@ const SurvivalGameCrafts = ({state}) => {
                     <div className="vertical-pb">
                         <div className="progress-bar" style={{width: el.life + "%"}}></div>
                     </div>
-                    <img id={`craft-${el.id}`} src={`/${el.name}.png`} alt={el.name}></img>
+                    <img id={`craft-${el.id}`} src={`/survival/${el.name}.png`} alt={el.name}></img>
                 </div>)
             }
         </div>
