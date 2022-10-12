@@ -1,6 +1,6 @@
 import "../css/survivalGameMenuRight.scss";
 import { build_axe_stone, build_greaves_leg_armor_cost, build_upper_body_armor_cost } from "../dataValues/survivalGameValues";
-import { existsItem, materialNeeded } from '../helpers/SurvivalHelper';
+import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenuRight = ({state, dispatch}) => {
 
@@ -13,6 +13,18 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
     const handleClickUpper = (e) => {
         e.preventDefault();
 		disableBtns();
+
+		const {exist: existUpperBody} = existsCraft(state.crafts, "upper_body_armor");
+		if (existUpperBody) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear una Armadura superior a la vez!"
+				}
+			})
+			return;
+		}
+
 		let notifys = [];
 		
 		let status = true;
@@ -113,6 +125,18 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
     const handleClickLeg = (e) => {
         e.preventDefault();
 		disableBtns();
+
+		const {exist: existLowerBody} = existsCraft(state.crafts, "lower_body_armor");
+		if (existLowerBody) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear una Armadura inferior a la vez!"
+				}
+			})
+			return;
+		}
+
 		let notifys = [];
 		
 		let status = true;
@@ -214,6 +238,18 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 
 		e.preventDefault();
 		disableBtns();
+
+		const {exist: existAxeStone} = existsCraft(state.crafts, "axe_stone");
+		if (existAxeStone) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear un Hacha de piedra a la vez!"
+				}
+			})
+			return;
+		}
+
 		let notifys = [];
 		
 		let status = true;

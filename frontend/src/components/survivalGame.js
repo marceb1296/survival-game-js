@@ -59,9 +59,31 @@ const SurvivalGame = ({state, dispatch}) => {
         })
         
     }, [state.crafts, dispatch]);
+
+    // del anm
+    useEffect(() => {
+
+        const delAnm = async (id) => {
+            document.getElementById(`anm-container-${id}`).classList.toggle("fadeOut")
+            document.getElementById(`anm-container-${id}`).classList.toggle("active")
+            await new Promise(r => setTimeout(r, 900));
+            dispatch({
+                type: "DEL ANM"
+            });
+        }
+
+        if (Object.keys(state.anm).length > 0) {
+            const { life, id } = state.anm;
+
+            if (life < 1) {
+                delAnm(id);
+            }
+        }
+    
+    }, [state.anm, dispatch]);
     
     return (
-        <div className="survival-container">
+        <div className="survival-container" style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
             <div className="survival-container-layouts">
                 <SurvivalGameSides state={state} dispatch={dispatch} side="left" />              
                 <div className="survival-center"></div>

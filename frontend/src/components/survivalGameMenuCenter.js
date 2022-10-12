@@ -408,6 +408,18 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 
 		e.preventDefault();
 		disableBtns();
+
+		const {exist: existsPickaxe} = existsCraft(state.crafts, "pickaxe");
+		if (existsPickaxe) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear un Pico a la vez!"
+				}
+			})
+			return;
+		}
+
 		let notifys = [];
 		
 		let status = true;

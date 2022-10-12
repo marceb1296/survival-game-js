@@ -3,7 +3,15 @@
     flex-direction: column;
     //position: relative;
     //background: blue;
-    
+    /*
+    filter: brightness(50%);
+
+    & img {
+        background-color: rgb(255, 255, 255, .8);
+        box-shadow: 0 0 10px 8px rgb(255, 255, 255, .8);
+        border-radius: 10px;
+    }
+    */
     & .survival-container-layouts {
     	display: flex;
     }

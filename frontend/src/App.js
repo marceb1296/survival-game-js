@@ -4,8 +4,9 @@ import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
   layer_countdown: 3,
-  life: 70,
-  food: 80,
+  life: 100,
+  food: 100,
+  shield: 0,
   btns: false,
   tree: [],
   rock: [],

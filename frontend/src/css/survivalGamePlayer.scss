@@ -23,9 +23,12 @@
               text-align: left;
               font-weight: bold;
               //font-size: .5rem;
+              color: white;
+              text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
             }
             & progress {
-                width: 50%;
+                width: 40%;
             }
         }
 	}
@@ -48,6 +51,10 @@
 	        justify-content: center;
 	        gap: 5px;
             font-weight: bold;
+            color: white;
+            text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+               1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+              
 	    }
 	}
 

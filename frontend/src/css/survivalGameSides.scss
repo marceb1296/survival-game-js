@@ -1,8 +1,7 @@
 .survival-right {
     width: 35%;
-    background: red;
     position: relative;
-
+    /*
     &::after {
         content: "";
         position: absolute;
@@ -12,15 +11,16 @@
         clip-path: polygon(0 0, 100% 0%, 100% 100%, 70% 100%);
         background: red;
     }
+    */
 }
 
 .survival-left {
     width: 35%;
     //height: 100%;
-    background: green;
     position: relative;
     font-size: .6em;
 
+    /*
     &::after {
         content: "";
         position: absolute;
@@ -30,6 +30,7 @@
         clip-path: polygon(0 0, 100% 0%, 30% 100%, 0% 100%);
         background: green;
     }
+    */
 }
 
 .survival-left, .survival-right {
@@ -42,10 +43,10 @@
         & img {
             position: absolute;
             z-index: 4;
-            width: 35%;
+            width: 10vw;
             height: auto;
             animation: fadeIn 1s ease-in-out;
-            transition: opacity 1s ease-in-out;
+            //transition: opacity 1s ease-in-out;
             opacity: 1;
             cursor: pointer;
 
@@ -58,7 +59,7 @@
             position: absolute;
             z-index: 4;
             width: 35%;
-            animation: fadeIn 1s ease-in-out;
+            //animation: fadeIn 1s ease-in-out;
             opacity: 1;
             cursor: pointer;
             transition: filter 1s ease;

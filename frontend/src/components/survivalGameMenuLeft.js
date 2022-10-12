@@ -1,6 +1,6 @@
 import "../css/survivalGameMenuLeft.scss";
 import { build_axe_wood, build_knife, build_knife_wood } from "../dataValues/survivalGameValues";
-import { existsItem, materialNeeded } from '../helpers/SurvivalHelper';
+import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenuLeft = ({state, dispatch}) => {
 
@@ -14,6 +14,18 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
     const handleClickKnife = (e) => {
         e.preventDefault();
 		disableBtns();
+
+		const {exist: existKnife} = existsCraft(state.crafts, "knife");
+		if (existKnife) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear un Cuchillo a la vez!"
+				}
+			})
+			return;
+		}
+
 		let notifys = [];
 		
 		let status = true;
@@ -94,6 +106,17 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
         e.preventDefault();
 		disableBtns();
 
+		const {exist: existKnifeWood} = existsCraft(state.crafts, "knife_wood");
+		if (existKnifeWood) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear un Cuchillo de madera a la vez!"
+				}
+			})
+			return;
+		}
+
 		const wood_amount = build_knife_wood;
 		const wood = existsItem([...state.items], "wood");
 
@@ -145,6 +168,17 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 
 		e.preventDefault();
 		disableBtns();
+
+		const {exist: existAxe} = existsCraft(state.crafts, "axe_wood");
+		if (existAxe) {
+			dispatch({
+				type: "ADD NOTIFY",
+				payload: {
+					message: "Solo puedes crear un Hacha de madera a la vez!"
+				}
+			})
+			return;
+		}
 
 		const wood_amount = build_axe_wood;
 		const wood = existsItem([...state.items], "wood");
