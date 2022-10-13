@@ -1,0 +1,25 @@
+.survival-game-over {
+    transition: opacity 2s ease-in-out;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgb(0, 0, 0, .8), rgb(255, 0, 0, .6), rgb(0, 0, 0, .8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    
+    & label {
+        font-size: 3em;
+        color: white;
+        text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+    }
+    
+    & button {
+        padding-inline: 2em;
+        font-size: 1em;
+    }
+}

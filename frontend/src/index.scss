@@ -8,13 +8,14 @@ body {
 
 .survival-container {
     & button {
-        background: linear-gradient(to right, rgb(176, 29, 29), blue, rgb(176, 25, 25));
+        background: linear-gradient(to right, black, rgb(176, 25, 25), blue, rgb(176, 25, 25), black);// rgb(176, 25, 25));
         border: none;
         color: white;
-        border-radius: 10px;
+        border-radius: 5px;
         font-size: calc(.4vw + .4vh + .8vmin);
         min-height: 25px;
         max-height: 30px;
+        padding-inline: 1em;
     }
 }
 

@@ -4,8 +4,8 @@ import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
   layer_countdown: 3,
-  life: 100,
-  food: 100,
+  life: 1,
+  food: 0,
   shield: 0,
   btns: false,
   tree: [],
@@ -101,7 +101,7 @@ function reducer(state, action) {
           ...state.items,
           {
             name: payload.item,
-            amount: 1
+            amount: payload.amount
           }
         ]
       }

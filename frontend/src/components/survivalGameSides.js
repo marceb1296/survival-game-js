@@ -1,5 +1,3 @@
-import React, { useRef } from 'react';
-
 import {
 	woodAmount,
 	stoneAmount,
@@ -15,8 +13,6 @@ import { existsCraft, restRandomLife } from '../helpers/SurvivalHelper';
 
 
 const SurvivalGameSides = ({state, dispatch, side}) => {
-
-    const handleImage = useRef();
 
     const hitAnm = async ({life, damage}, playerDamage, lifeTool, name) => {
 
@@ -223,7 +219,6 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             await new Promise(r => setTimeout(r, 3000));
             document.getElementById(`anm-container-${id}`).classList.toggle("active")
 
-            
 			return;
 		}
 

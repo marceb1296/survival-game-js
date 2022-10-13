@@ -6,6 +6,8 @@ import SurvivalGameMenu from "./survivalGameMenu";
 import SurvivalGamePlayer from "./survivalGamePlayer";
 import SurvivalGameSides from "./survivalGameSides";
 import SurvivalGameNotify from "./survivalGameNotify";
+import SurvivalGameOver from "./survivalGameOver";
+import { probability_get_from_anm } from "../dataValues/survivalGameValues";
 
 const SurvivalGame = ({state, dispatch}) => {
 
@@ -63,9 +65,41 @@ const SurvivalGame = ({state, dispatch}) => {
     // del anm
     useEffect(() => {
 
-        const delAnm = async (id) => {
+        const delAnm = async ({ id, name, meat, leather, rope }) => {
+            
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `Haz matado al ${name}`
+                }
+            });
+            
+            if (probability_get_from_anm() > 0) {
+                
+                const rewards = { meat, rope, leather };
+                
+                Object.entries(rewards).forEach(([key, value]) => {
+                    
+                    dispatch({
+                        type: "ADD ITEM",
+                        payload: {
+                            item: key,
+                            amount: value
+                        }
+                    });
+                    dispatch({
+                        type: "ADD NOTIFY",
+                        payload: {
+                            message:
+                            `+ ${value} de ${key}`
+                        }
+                    })
+                })
+            }
+            
             document.getElementById(`anm-container-${id}`).classList.toggle("fadeOut")
             document.getElementById(`anm-container-${id}`).classList.toggle("active")
+            
             await new Promise(r => setTimeout(r, 900));
             dispatch({
                 type: "DEL ANM"
@@ -73,14 +107,14 @@ const SurvivalGame = ({state, dispatch}) => {
         }
 
         if (Object.keys(state.anm).length > 0) {
-            const { life, id } = state.anm;
+            const { life } = state.anm;
 
             if (life < 1) {
-                delAnm(id);
+                delAnm(state.anm);
             }
         }
     
-    }, [state.anm, dispatch]);
+    }, [state.anm, dispatch, probability_get_from_anm]);
     
     return (
         <div className="survival-container" style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
@@ -93,6 +127,9 @@ const SurvivalGame = ({state, dispatch}) => {
             <SurvivalGamePlayer state={state} dispatch={dispatch}/>
             <SurvivalGameCrafts state={state}/>
             <SurvivalGameNotify state={state} dispatch={dispatch}/>
+            { state.life < 1 &&
+                <SurvivalGameOver />
+            }
         </div>
     );
 }
