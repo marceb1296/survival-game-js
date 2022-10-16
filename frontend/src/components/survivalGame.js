@@ -7,6 +7,7 @@ import SurvivalGamePlayer from "./survivalGamePlayer";
 import SurvivalGameSides from "./survivalGameSides";
 import SurvivalGameNotify from "./survivalGameNotify";
 import SurvivalGameOver from "./survivalGameOver";
+import SurvivalNewGame from "./survivalNewGame";
 import { probability_get_from_anm } from "../dataValues/survivalGameValues";
 
 const SurvivalGame = ({state, dispatch}) => {
@@ -114,10 +115,13 @@ const SurvivalGame = ({state, dispatch}) => {
             }
         }
     
-    }, [state.anm, dispatch, probability_get_from_anm]);
+    }, [state.anm, dispatch]);
     
     return (
         <div className="survival-container" style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
+            { !state.start_game &&
+                <SurvivalNewGame load={state.load} dispatch={dispatch}/>
+            }
             <div className="survival-container-layouts">
                 <SurvivalGameSides state={state} dispatch={dispatch} side="left" />              
                 <div className="survival-center"></div>

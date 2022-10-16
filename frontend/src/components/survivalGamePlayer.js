@@ -7,26 +7,28 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
     // handle events
 
     useEffect(() => {
-
-        const interval = setInterval(() => {
-            dispatch({
-                type: "SET FOOD",
-                payload: {
-                    food: state.food - 1
-                }
-            })
-        }, 3000);
-
-        if (state.food < 1) {
-            clearInterval(interval);
-        }
+        if (state.start_game) {
+            
+            const interval = setInterval(() => {
+                dispatch({
+                    type: "SET FOOD",
+                    payload: {
+                        food: state.food - 1
+                    }
+                })
+            }, 3000);
     
-        return () => clearInterval(interval);
-    }, [state.food, dispatch]);
+            if (state.food < 1 && state.start_game) {
+                clearInterval(interval);
+            }
+        
+            return () => clearInterval(interval);
+        }
+    }, [state.food, dispatch, state.start_game]);
 
     useEffect(() => {
 
-        if (state.food === 0) {
+        if (state.food === 0 && state.start_game) {
 
 
             const intervalLife = setInterval(() => {
@@ -47,7 +49,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
         }
 
         // regenerate life if has enought food
-        if (state.food > 90 && state.life < 99) {
+        if (state.food > 90 && state.life < 99 && state.start_game) {
 
             const interval = setInterval(() => {
                 dispatch({
@@ -66,7 +68,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
 
             return () => clearInterval(interval);
 
-        } else if (state.food > 90 && state.life > 98 && state.life < 100) {
+        } else if (state.food > 90 && state.life > 98 && state.life < 100 && state.start_game) {
             dispatch({
                 type: "SET LIFE",
                 payload: {
@@ -77,7 +79,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
 
         
     
-    }, [state.food, state.life, dispatch]);
+    }, [state.food, state.life, state.start_game, dispatch]);
 
 
     return (

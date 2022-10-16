@@ -3,6 +3,8 @@ import SurvivalGame from "./components/survivalGame";
 import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
+  start_game: false,
+  load: false,
   layer_countdown: 3,
   life: 1,
   food: 0,
@@ -27,6 +29,11 @@ function reducer(state, action) {
   const {type, payload} = action
 
   switch (type) {
+    case "START GAME":
+        return {
+            ...state,
+            start_game: !state.start_game
+        }
     case "SET LIFE":
       return {
         ...state, 

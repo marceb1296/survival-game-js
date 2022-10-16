@@ -1,4 +1,4 @@
-.survival-game-over {
+.survival-game-over, .survival-new-game {
     transition: opacity 2s ease-in-out;
     position: absolute;
     width: 100%;
@@ -21,5 +21,9 @@
     & button {
         padding-inline: 2em;
         font-size: 1em;
+    }
+    
+    &.fadeOut {
+        animation: fadeOut 2s ease-in-out;
     }
 }
