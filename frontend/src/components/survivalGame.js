@@ -116,6 +116,27 @@ const SurvivalGame = ({state, dispatch}) => {
         }
     
     }, [state.anm, dispatch]);
+
+    
+    // autosave every 5 s
+    useEffect(() => {
+
+        dispatch({
+            type: "SAVE GAME"
+        })
+        console.log("saved")
+
+        const save = setInterval(() => {
+            if ()
+            const saveGame = JSON.stringify(state);
+            localStorage.setItem("survival_game", saveGame)
+            localStorage.setI
+        }, 5000);
+        
+    
+        return () => clearInterval(save);
+    }, []);
+    
     
     return (
         <div className="survival-container" style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>

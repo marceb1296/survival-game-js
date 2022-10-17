@@ -7,7 +7,7 @@ const initialValue = {
   load: false,
   layer_countdown: 3,
   life: 1,
-  food: 0,
+  food: 80,
   shield: 0,
   btns: false,
   tree: [],
@@ -34,6 +34,13 @@ function reducer(state, action) {
             ...state,
             start_game: !state.start_game
         }
+    case "SAVE GAME":
+      return {
+        ...state,
+        load: true
+      }
+    case "LOAD GAME":
+      return localStorage.getItem("survival_game")
     case "SET LIFE":
       return {
         ...state, 

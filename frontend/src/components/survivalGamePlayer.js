@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import "../css/survivalGamePlayer.scss";
+import SurvivalGame from './survivalGame';
 
 const SurvivalGamePlayer = ({state, dispatch}) => {
 
@@ -26,6 +27,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
         }
     }, [state.food, dispatch, state.start_game]);
 
+    // handle game over
     useEffect(() => {
 
         if (state.food === 0 && state.start_game) {
@@ -42,6 +44,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
 
             if (state.life === 0) {
                 // Game Over
+                localStorage.removeItem("survival_game");
                 clearInterval(intervalLife);
             }
             
