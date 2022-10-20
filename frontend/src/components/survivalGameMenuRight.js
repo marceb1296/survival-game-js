@@ -1,5 +1,5 @@
 import "../css/survivalGameMenuRight.scss";
-import { build_axe_stone, build_greaves_leg_armor_cost, build_upper_body_armor_cost } from "../dataValues/survivalGameValues";
+import { build_axe_stone, build_greaves_leg_armor_cost, build_upper_body_armor_cost, shield_greaves_leg_armor, shield_upper_body_armor } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
 
 const SurvivalGameMenuRight = ({state, dispatch}) => {
@@ -110,7 +110,8 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 			type: "ADD CRAFT",
 			payload: {
 				craft: "upper_body_armor",
-				amount: 1
+				amount: 1,
+				life: shield_upper_body_armor
 			}
 		})
 
@@ -222,7 +223,8 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 			type: "ADD CRAFT",
 			payload: {
 				craft: "greaves_leg_armor",
-				amount: 1
+				amount: 1,
+				life: shield_greaves_leg_armor
 			}
 		})
 

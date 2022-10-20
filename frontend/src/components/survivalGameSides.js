@@ -47,18 +47,57 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             } 
         })
 
-        dispatch({
-            type: "SET LIFE",
-            payload: {
-                life: damage > state.life ? 0 : state.life - damage
-            }
-        })
-        dispatch({
-            type: "ADD NOTIFY",
-            payload: {
-                message: `Has recibido + ${damage} de daño!`
-            } 
-        });
+        //shield
+
+        const {exist: existUperArmor, life: lifeUperArmor} = existsCraft(state.crafts, "upper_body_armor");
+        const {exist: existLowerArmor, life: lifeLowerArmor} = existsCraft(state.crafts, "greaves_leg_armor");
+        console.log(existLowerArmor)
+        if (existLowerArmor) {
+
+            dispatch({
+                type: "REST CRAFT LIFE",
+                payload: {
+                    craft: "greaves_leg_armor",
+                    life: (lifeLowerArmor - damage)
+                }
+            });
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `Has recibido + ${damage} de daño! => Armadura inferior`
+                } 
+            });
+        } else if (existUperArmor) {
+
+            dispatch({
+                type: "REST CRAFT LIFE",
+                payload: {
+                    craft: "upper_body_armor",
+                    life: lifeUperArmor - damage
+                }
+            });
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `Has recibido + ${damage} de daño! => Armadura superior`
+                } 
+            });
+        } else {
+
+            dispatch({
+                type: "SET LIFE",
+                payload: {
+                    life: damage > state.life ? 0 : state.life - damage
+                }
+            })
+            dispatch({
+                type: "ADD NOTIFY",
+                payload: {
+                    message: `Has recibido + ${damage} de daño!`
+                } 
+            });
+        }
+
     }
     
     const handleClickDel = async (type, id) => {

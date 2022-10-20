@@ -4,14 +4,16 @@ import "../css/survivalGameOver.scss";
 const SurvivalNewGame = ({load, dispatch}) => {
     
     const animation = useRef();
-    const gameLoaded = localStorage.getItem("survival_game");
-    console.log("local: " + gameLoaded)
+    const gameLoaded = JSON.parse(localStorage.getItem("survival_game"));
     
     const newGame = async (e) => {
         animation.current.classList.toggle("fadeOut");
         await new Promise(r => setTimeout(r, 2000));
         dispatch({
-            type: "START GAME"
+            type: "START GAME",
+            payload: {
+                game: true
+            }
         });
     }
     const loadGame = async (e) => {
@@ -21,7 +23,10 @@ const SurvivalNewGame = ({load, dispatch}) => {
         animation.current.classList.toggle("fadeOut");
         await new Promise(r => setTimeout(r, 2000));
         dispatch({
-            type: "START GAME"
+            type: "START GAME",
+            payload: {
+                game: true
+            }
         });
     }
     return (

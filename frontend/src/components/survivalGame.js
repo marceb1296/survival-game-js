@@ -118,28 +118,27 @@ const SurvivalGame = ({state, dispatch}) => {
     }, [state.anm, dispatch]);
 
     
-    // autosave every 5 s
+    // autosave every 4 s
     useEffect(() => {
 
-        dispatch({
-            type: "SAVE GAME"
-        })
-        console.log("saved")
+        if (state.start_game) {
 
-        const save = setInterval(() => {
-            if ()
-            const saveGame = JSON.stringify(state);
-            localStorage.setItem("survival_game", saveGame)
-            localStorage.setI
-        }, 5000);
+            const save = setInterval(() => {
+                dispatch({
+                    type: "SAVE GAME"
+                })
+            }, 4000);
+            
         
-    
-        return () => clearInterval(save);
-    }, []);
+            return () => clearInterval(save);
+        }
+
+
+    }, [state.start_game, dispatch]);
     
     
     return (
-        <div className="survival-container" style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
+        <div className={`survival-container ${state.hour < 7 | state.hour > 18 ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
             { !state.start_game &&
                 <SurvivalNewGame load={state.load} dispatch={dispatch}/>
             }

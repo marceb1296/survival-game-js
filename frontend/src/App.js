@@ -3,16 +3,19 @@ import SurvivalGame from "./components/survivalGame";
 import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
+  language: "en",
   start_game: false,
+  game_over: false,
   load: false,
   layer_countdown: 3,
   life: 1,
-  food: 80,
-  shield: 0,
+  food: 0,
+  hour: 20,
+  minutes: 0,
   btns: false,
   tree: [],
   rock: [],
-  items: [{name: "meat", amount: 10}, {name: "wood", amount:500}, {name: "stone", amount: 500}, {name: "leather", amount: 100}, {name: "rope", amount: 100}],
+  items: [],
   crafts: [],
   notifys: [],
   anm: {}
@@ -32,15 +35,30 @@ function reducer(state, action) {
     case "START GAME":
         return {
             ...state,
-            start_game: !state.start_game
+            start_game: payload.game
         }
-    case "SAVE GAME":
+    case "GAME OVER":
       return {
         ...state,
-        load: true
+        game_over: payload.game_over
       }
+    case "SAVE GAME":
+      const autosave = !state.load ? 
+        {
+          ...state,
+          load: true
+        }
+        :
+        state;
+
+      localStorage.setItem("survival_game", JSON.stringify(autosave))
+
+      return state
     case "LOAD GAME":
-      return localStorage.getItem("survival_game")
+      const loadGame = JSON.parse(localStorage.getItem("survival_game"))
+      return {
+        ...loadGame
+      }
     case "SET LIFE":
       return {
         ...state, 
@@ -60,6 +78,16 @@ function reducer(state, action) {
       return {
         ...state,
         layer_countdown: payload.count
+      }
+    case "SET HOUR":
+      return {
+        ...state,
+        hour: payload.hour < 25 ? payload.hour : 0
+      }
+    case "SET MINUTES":
+      return {
+        ...state,
+        minutes: payload.minutes
       }
     case "SET TREE":
       return {
@@ -150,7 +178,7 @@ function reducer(state, action) {
           {
             name: payload.craft,
             id: randomID(),
-            life: defaultLifeTool,
+            life: payload.life !== undefined ? payload.life : defaultLifeTool,
             amount: 1
           }
         ]

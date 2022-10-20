@@ -3,6 +3,7 @@ import "../css/survivalGameOver.scss";
 const SurvivalGameOver = () => {
     
     const newGame = (e) => {
+        localStorage.removeItem("survival_game");
         window.location.reload();
     }
     return (

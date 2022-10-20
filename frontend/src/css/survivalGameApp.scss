@@ -1,6 +1,8 @@
 .survival-container {
     display: flex;
     flex-direction: column;
+    transition: filter 5s ease-in-out;
+
     //position: relative;
     //background: blue;
     /*

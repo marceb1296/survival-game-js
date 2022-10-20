@@ -1,61 +1,92 @@
 .survival-player {
-	width: 100%;
+    width: 100%;
     height: auto;
     left: -.5%;
     position: absolute;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     font-size: .8rem;
+    
+    & .survival-player-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        font-size: .8rem;
+    
+        & .survival-state {
+            width: 50%;
+            text-align: center;
+            margin-inline: .5em;
+    
+            & label {
+                width: 100%;
+                display: flex;
+                gap: 5px;
+                justify-content: space-between;
+    
+                & span {
+                    transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+                    width: 15%;
+                    text-align: left;
+                    font-weight: bold;
+                    //font-size: .5rem;
+                    color: white;
+                    text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                        1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+                }
+                & progress {
+                    width: 40%;
+                }
+            }
+        }
+        
+        & .survival-materials {
+            width: 50%;
+            font-size: .8em;
+    
+            & p {
+                display: flex;
+                width: 90%;
+                margin-inline: 1em;
+                gap: 15px;
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+            
+            & label {
+                transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+                display: flex;
+                justify-content: center;
+                gap: 5px;
+                font-weight: bold;
+                color: white;
+                text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                   1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+                  
+            }
+        }
+    
+    }
 
-    & .survival-state {
-        width: 50%;
+    & .survival-player-timer {
         text-align: center;
-        margin-inline: .5em;
-
-        & label {
-            width: 100%;
-            display: flex;
-            gap: 5px;
-            justify-content: space-between;
-
-            & span {
-              width: 15%;
-              text-align: left;
-              font-weight: bold;
-              //font-size: .5rem;
-              color: white;
-              text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
-                1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
-            }
-            & progress {
-                width: 40%;
-            }
-        }
-	}
-	
-	& .survival-materials {
-	    width: 50%;
-        font-size: .8em;
-
-	    & p {
-            display: flex;
-            width: 90%;
-            margin-inline: 1em;
-            gap: 15px;
-            flex-flow: row wrap;
-            justify-content: space-around;
-        }
-	    
-	    & label {
-	        display: flex;
-	        justify-content: center;
-	        gap: 5px;
+        
+        & span {
+            width: 15%;
+            text-align: left;
             font-weight: bold;
+            //font-size: .5rem;
             color: white;
             text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
-               1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
-              
-	    }
-	}
+            1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+        }
+    }
+}
 
+.nigth .survival-player span, .nigth .survival-player .survival-player-container .survival-state label span {
+    transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+    color: black;
+    text-shadow: 2px 0 white, -2px 0 white, 0 2px white, 0 -2px white,
+                   1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
 }
