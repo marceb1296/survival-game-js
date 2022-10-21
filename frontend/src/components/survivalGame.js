@@ -9,8 +9,11 @@ import SurvivalGameNotify from "./survivalGameNotify";
 import SurvivalGameOver from "./survivalGameOver";
 import SurvivalNewGame from "./survivalNewGame";
 import { probability_get_from_anm } from "../dataValues/survivalGameValues";
+import { language } from "../lan/language";
 
 const SurvivalGame = ({state, dispatch}) => {
+    
+    const { survival_game } = language;
 
     // del item
     useEffect(() => {
@@ -47,7 +50,7 @@ const SurvivalGame = ({state, dispatch}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `- 1 ${name}!`
+                    message: `- 1 ${language[state.lan].survivalGameNames[name]}!`
                 }
             })
         }
@@ -61,7 +64,7 @@ const SurvivalGame = ({state, dispatch}) => {
 
         })
         
-    }, [state.crafts, dispatch]);
+    }, [state.crafts, state.lan, dispatch]);
 
     // del anm
     useEffect(() => {
@@ -71,7 +74,7 @@ const SurvivalGame = ({state, dispatch}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `Haz matado al ${name}`
+                    message: `${language[stare.lan].survivalGame.kill_anm} ${language[state.lan].survivalGameNames[name]}`
                 }
             });
             
@@ -115,7 +118,7 @@ const SurvivalGame = ({state, dispatch}) => {
             }
         }
     
-    }, [state.anm, dispatch]);
+    }, [state.anm, dispatch, state.lan]);
 
     
     // autosave every 4 s
@@ -138,7 +141,7 @@ const SurvivalGame = ({state, dispatch}) => {
     
     
     return (
-        <div className={`survival-container ${state.hour < 7 | state.hour > 18 ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
+        <div className={`survival-container ${(state.hour < 7 | state.hour > 18) && state.start_game ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
             { !state.start_game &&
                 <SurvivalNewGame load={state.load} dispatch={dispatch}/>
             }

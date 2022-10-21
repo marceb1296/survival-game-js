@@ -1,7 +1,9 @@
 export const language = {
     survival_game: {
         es: {
-            survivalGame: {},
+            survivalGame: {
+                kill_anm: "Haz matado al"
+            },
             survivalGameCraft: {},
             survivalGameMenu: {},
             survivalGameMenuCenter: {},
@@ -12,7 +14,7 @@ export const language = {
             survivalGamePlayer: {},
             survivalGameSides: {},
             survivalNewGame: {},
-            survivalGameToolsName: {
+            survivalGameNames: {
                 axe_stone: "Hacha de Piedra",
                 axe_wood: "Hacha de Madera",
                 bonfire: "Fogata",
@@ -29,7 +31,9 @@ export const language = {
             }
         },
         en: {
-            survivalGame: {},
+            survivalGame: {
+                kill_anm: "You have killed the"
+            },
             survivalGameCraft: {},
             survivalGameMenu: {},
             survivalGameMenuCenter: {},
@@ -40,7 +44,7 @@ export const language = {
             survivalGamePlayer: {},
             survivalGameSides: {},
             survivalNewGame: {},
-            survivalGameToolsName: {
+            survivalGameNames: {
                 axe_stone: "Stone Axe",
                 axe_wood: "Wood Axe",
                 bonfire: "Bonfire",
