@@ -5,7 +5,7 @@ export const existsCraft = (items, item) => items.filter(el => el.name === item)
 export const materialNeeded = (item, amountMaterial) => {
     const { name, amount } = item;
 
-    return `Necesitas ${amountMaterial - amount} de ${name}!`
+    return [(amountMaterial - amount), name]
 }
 
 export const restRandomLife = (life) => life < 10 ? Math.floor((Math.random() * (life * 3)) + 1) : Math.floor((Math.random() * life) + 1);

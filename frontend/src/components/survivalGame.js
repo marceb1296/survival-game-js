@@ -14,6 +14,7 @@ import { language } from "../lan/language";
 const SurvivalGame = ({state, dispatch}) => {
     
     const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     // del item
     useEffect(() => {
@@ -50,7 +51,7 @@ const SurvivalGame = ({state, dispatch}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `- 1 ${language[state.lan].survivalGameNames[name]}!`
+                    message: `- 1 ${language_gotted.survivalGameNames[name]}!`
                 }
             })
         }
@@ -64,7 +65,7 @@ const SurvivalGame = ({state, dispatch}) => {
 
         })
         
-    }, [state.crafts, state.lan, dispatch]);
+    }, [state.crafts, state.language, survival_game, dispatch]);
 
     // del anm
     useEffect(() => {
@@ -74,7 +75,7 @@ const SurvivalGame = ({state, dispatch}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${language[stare.lan].survivalGame.kill_anm} ${language[state.lan].survivalGameNames[name]}`
+                    message: `${language_gotted.survivalGame.kill_anm} ${language_gotted.survivalGameNames[name]}`
                 }
             });
             
@@ -95,7 +96,7 @@ const SurvivalGame = ({state, dispatch}) => {
                         type: "ADD NOTIFY",
                         payload: {
                             message:
-                            `+ ${value} de ${key}`
+                            `+ ${value} ${language_gotted.survivalGameNames.of} ${language_gotted.survivalGameNames[key]}`
                         }
                     })
                 })
@@ -118,7 +119,7 @@ const SurvivalGame = ({state, dispatch}) => {
             }
         }
     
-    }, [state.anm, dispatch, state.lan]);
+    }, [state.anm, dispatch, survival_game, state.language]);
 
     
     // autosave every 4 s

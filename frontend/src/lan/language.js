@@ -2,11 +2,16 @@ export const language = {
     survival_game: {
         es: {
             survivalGame: {
-                kill_anm: "Haz matado al"
+                kill_anm: "Haz matado al",
+                of: "de"
             },
-            survivalGameCraft: {},
-            survivalGameMenu: {},
-            survivalGameMenuCenter: {},
+            survivalGameMenuCenter: {
+                escape: "Haz logrado escapar del",
+                receive: "Pero has recibido",
+                damage: "de daño!",
+                bonfire_once: "You can only build one Bonfire at once!",
+                bonfire_build: "Haz creado una Fogata!"
+            },
             survivalGameMenuLeft: {},
             survivalGameMenuRight: {},
             survivalGameNotify: {},
@@ -25,18 +30,31 @@ export const language = {
                 pickaxe: "Pico",
                 stone: "Piedra",
                 wood: "Madera",
+                meat: "Carne",
+                cooked_meat: "Carne Cocinada",
+                leather: "Cuero",
+                rope: "Cuerda",
                 upper_body_armor: "Armadura Superior",
                 wild_pig: "Jabali",
                 wolf: "Lobo"
+            },
+            survivalGameMaterials: {
+                need: "Necesitas",
+                of: "de"
             }
         },
         en: {
             survivalGame: {
-                kill_anm: "You have killed the"
+                kill_anm: "You have killed the",
+                of: "of"
             },
-            survivalGameCraft: {},
-            survivalGameMenu: {},
-            survivalGameMenuCenter: {},
+            survivalGameMenuCenter: {
+                escape: "You have escaped from the",
+                receive: "But you have receive",
+                damage: "of damage!",
+                bonfire_once: "You can only build one Bonfire at once!",
+                bonfire_build: "You have build a Bonfire!"
+            },
             survivalGameMenuLeft: {},
             survivalGameMenuRight: {},
             survivalGameNotify: {},
@@ -55,9 +73,17 @@ export const language = {
                 pickaxe: "Pickaxe",
                 stone: "Stone",
                 wood: "Wood",
+                meat: "Meat",
+                cooked_meat: "Cooked Meat",
+                leather: "Leather",
+                rope: "Rope",
                 upper_body_armor: "Upper Body Armor",
                 wild_pig: "Wild Pig",
                 wolf: "wolf"
+            },
+            survivalGameMaterials: {
+                need: "You need",
+                of: "of"
             }
         }
     }

@@ -11,9 +11,12 @@ import {
 	build_pickaxe_stone
 } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded, restRandomLife } from '../helpers/SurvivalHelper';
+import { language } from "../lan/language";
 
 const SurvivalGameMenuMain = ({state, dispatch}) => {
 	
+	const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     // events
 	const disableBtns = async () => {
@@ -52,8 +55,8 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		if (Object.keys(state.anm).length > 0) {
 
 			let notifys = [
-				`Haz logrado escapar del ${state.anm.name}`,
-				`Pero has recibido ${state.anm.damage * 2} de daño!`
+				`${language_gotted.survivalGameMenuCenter.escape} ${language_gotted.survivalGameNames[state.anm.name]}`,
+				`${language_gotted.survivalGameMenuCenter.receive} + ${state.anm.damage * 2} ${language_gotted.survivalGameMenuCenter.damage}`
 			]
 
 			notifys.forEach(el => dispatch({
@@ -121,7 +124,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear una Fogata a la vez!"
+					message: language_gotted.survivalGameMenuCenter.bonfire_once
 				}
 			})
 			return;
@@ -136,13 +139,15 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		const stone = existsItem([...state.items], "stone");
 
 		if (wood.amount < wood_amount) {
+			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(wood, wood_amount)]
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 			
 		}
 		if (stone.amount < stone_amount) {
+			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(stone, stone_amount)]
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
 			
 		}
 
@@ -168,7 +173,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 
@@ -183,7 +188,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de piedra!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}`
 			}
 		})
 
@@ -198,7 +203,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Bonfire builded!"
+				message: language_gotted.survivalGameMenuCenter.bonfire_build
 			}
 		})
 
