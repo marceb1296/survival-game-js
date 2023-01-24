@@ -3,17 +3,42 @@ export const language = {
         es: {
             survivalGame: {
                 kill_anm: "Haz matado al",
-                of: "de"
+                of: "de",
+                life: "vida",
+                food: "comida",
+                damage: "daño",
+                made: "Hiciste"
             },
             survivalGameMenuCenter: {
                 escape: "Haz logrado escapar del",
                 receive: "Pero has recibido",
                 damage: "de daño!",
-                bonfire_once: "You can only build one Bonfire at once!",
-                bonfire_build: "Haz creado una Fogata!"
+                bonfire_once: "Solo puedes crear una fogata a la vez!",
+                bonfire_build: "Haz creado una Fogata!",
+                need_bonfire: "Necesitas una Fogata!",
+                not_meet: "No tienes carne para cocinar!",
+                cooked_meat: "Haz cocinado una pieza de carne!",
+                not_meet_eat: "No tienes carne que comer!",
+                should_cooked: "La hubiese cocinado mejor...",
+                pickaxe_once: "Solo puedes crear un Pico a la vez!",
+                pickaxe_build: "Haz creado un Pico!",
             },
-            survivalGameMenuLeft: {},
-            survivalGameMenuRight: {},
+            survivalGameMenuLeft: {
+                knife_once: "Solo puedes crear un Cuchillo a la vez!",
+                knife_build: "Haz creado un Cuchillo!",
+                knife_wood_once: "Solo puedes crear un Cuchillo de Madera a la vez!",
+                knife_wood_build: "Haz creado un Cuchillo de Madera!",
+                wood_axe_once: "Solo puedes crear una Hacha de Madera a la vez!",
+                wood_axe_build: "Haz creado una Hacha de Madera!"
+            },
+            survivalGameMenuRight: {
+                up_arm_once: "Solo puedes crear una Armadura superior a la vez!",
+                up_arm_build: "Haz creado una Armadura superior!",
+                down_arm_once: "Solo puedes crear una Armadura Inferior a la vez!",
+                down_arm_build: "Haz creado una Armadura Inferior!",
+                stone_axe_once: "Solo puedes crear una Hacha de Piedra a la vez!",
+                stone_axe_build: "Haz creado una Hacha de Piedra!"
+            },
             survivalGameNotify: {},
             survivalGameOver: {},
             survivalGamePlayer: {},
@@ -46,17 +71,42 @@ export const language = {
         en: {
             survivalGame: {
                 kill_anm: "You have killed the",
-                of: "of"
+                of: "of",
+                life: "life",
+                food: "food",
+                damage: "damage",
+                made: "You made"
             },
             survivalGameMenuCenter: {
                 escape: "You have escaped from the",
                 receive: "But you have receive",
                 damage: "of damage!",
-                bonfire_once: "You can only build one Bonfire at once!",
-                bonfire_build: "You have build a Bonfire!"
+                bonfire_once: "You can build only one Bonfire at once!",
+                bonfire_build: "You have build a Bonfire!",
+                need_bonfire: "You need a Bonfire!",
+                not_meet: "You dont have enough meat!",
+                cooked_meat: "You cooked a piece of meat!",
+                not_meet_eat: "You dont have meat to eat!",
+                should_cooked: "i should have cooked...",
+                pickaxe_once: "You can build only one PickAxe at once!",
+                pickaxe_build: "You have build a Pickaxe!",
             },
-            survivalGameMenuLeft: {},
-            survivalGameMenuRight: {},
+            survivalGameMenuLeft: {
+                knife_once: "You can build only one Knife at once!",          
+                knife_build: "You have build a Knife!",
+                knife_wood_once: "You can build only one Wood Knife at once!",          
+                knife_wood_build: "You have build a Wood Knife!",
+                wood_axe_once: "You can build only one Wood Axe at once!",          
+                wood_axe_build: "You have build a Wood Axe!"
+            },
+            survivalGameMenuRight: {
+                up_arm_once: "You can build only one Upper Armor at once!",          
+                up_arm_build: "You have build an Upper Armor!",
+                down_arm_once: "You can build only one Greaves Leg Armor at once!",          
+                down_arm_build: "You have build a Greaves Leg Armor!",
+                stone_axe_once: "You can build only one Stone Axe at once!",          
+                stone_axe_build: "You have build a Stone Axe!"
+            },
             survivalGameNotify: {},
             survivalGameOver: {},
             survivalGamePlayer: {},

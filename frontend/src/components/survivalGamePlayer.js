@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import "../css/survivalGamePlayer.scss";
+import { language } from "../lan/language";
 
 const SurvivalGamePlayer = ({state, dispatch}) => {
+
+
+    const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     // handle minutes
     useEffect(() => {
@@ -103,7 +108,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `+ 2 de vida!`
+                        message: `+ 2 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["life"]}!`
                     }
                 })
             }, 3000);

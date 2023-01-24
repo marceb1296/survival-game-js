@@ -10,9 +10,14 @@ import {
 } from "../dataValues/survivalGameValues";
 import "../css/survivalGameSides.scss";
 import { existsCraft, restRandomLife } from '../helpers/SurvivalHelper';
+import { language } from "../lan/language";
 
 
 const SurvivalGameSides = ({state, dispatch, side}) => {
+
+
+    const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     const hitAnm = async ({life, damage}, playerDamage, lifeTool, name) => {
 
@@ -29,7 +34,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${name}: - ${restLifeCraft} de vida!`
+                    message: `${name}: - ${restLifeCraft} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["life"]}!`
                 }
             })
         }
@@ -43,7 +48,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
         dispatch({
             type: "ADD NOTIFY",
             payload: {
-                message: `Has echo + ${playerDamage} de daño!`
+                message: `${language_gotted.survivalGame["made"]} + ${playerDamage} ${restLifeCraft} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["damage"]}!`
             } 
         })
 
@@ -51,7 +56,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
         const {exist: existUperArmor, life: lifeUperArmor} = existsCraft(state.crafts, "upper_body_armor");
         const {exist: existLowerArmor, life: lifeLowerArmor} = existsCraft(state.crafts, "greaves_leg_armor");
-        console.log(existLowerArmor)
+
         if (existLowerArmor) {
 
             dispatch({

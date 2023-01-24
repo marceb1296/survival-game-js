@@ -1,8 +1,12 @@
 import "../css/survivalGameMenuLeft.scss";
 import { build_axe_wood, build_knife, build_knife_wood } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
+import { language } from "../lan/language";
 
 const SurvivalGameMenuLeft = ({state, dispatch}) => {
+
+	const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     // events
 	const disableBtns = async () => {
@@ -20,7 +24,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear un Cuchillo a la vez!"
+					message: language_gotted.survivalGameMenuLeft.knife_once
 				}
 			})
 			return;
@@ -35,14 +39,16 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		const stone = existsItem([...state.items], "stone");
 
 		if (wood.amount < wood_amount) {
+			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(wood, wood_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+					
 		}
 		if (stone.amount < stone_amount) {
+			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(stone, stone_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
+						
 		}
 
 		if (!status) {
@@ -67,7 +73,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -82,7 +88,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${stone_amount} de piedra!`
+				message: `- ${stone_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}!`
 			}
 		})
 
@@ -97,7 +103,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "knife builded!"
+				message: language_gotted.survivalGameMenuLeft.knife_build
 			}
 		})
     }
@@ -111,7 +117,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear un Cuchillo de madera a la vez!"
+					message: language_gotted.survivalGameMenuLeft.knife_wood_once
 				}
 			})
 			return;
@@ -120,11 +126,13 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		const wood_amount = build_knife_wood;
 		const wood = existsItem([...state.items], "wood");
 
+		let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
+
 		if (wood.amount < wood_amount) {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: materialNeeded(wood, wood_amount)
+					message: `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`
 				}
 			})
 			return;
@@ -143,7 +151,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -159,7 +167,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Wood knife builded!"
+				message: language_gotted.survivalGameMenuLeft.knife_wood_build
 			}
 		})
     }
@@ -174,7 +182,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear un Hacha de madera a la vez!"
+					message: language_gotted.survivalGameMenuLeft.wood_axe_once
 				}
 			})
 			return;
@@ -183,11 +191,13 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		const wood_amount = build_axe_wood;
 		const wood = existsItem([...state.items], "wood");
 
+		let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
+
 		if (wood.amount < wood_amount) {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: materialNeeded(wood, wood_amount)
+					message: `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`
 				}
 			})
 			return;
@@ -206,7 +216,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -222,7 +232,7 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Wood axe builded!"
+				message: language_gotted.survivalGameMenuLeft.wood_axe_build
 			}
 		})
 	}

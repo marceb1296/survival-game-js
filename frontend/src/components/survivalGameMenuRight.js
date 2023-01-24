@@ -1,8 +1,12 @@
 import "../css/survivalGameMenuRight.scss";
 import { build_axe_stone, build_greaves_leg_armor_cost, build_upper_body_armor_cost, shield_greaves_leg_armor, shield_upper_body_armor } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
+import { language } from "../lan/language";
 
 const SurvivalGameMenuRight = ({state, dispatch}) => {
+
+	const { survival_game } = language;
+    const language_gotted = survival_game[state.language];
 
     const disableBtns = async () => {
 		dispatch({
@@ -19,7 +23,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear una Armadura superior a la vez!"
+					message: language_gotted.survivalGameMenuRight.up_arm_once
 				}
 			})
 			return;
@@ -35,19 +39,21 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		const rope = existsItem([...state.items], "rope");
 
 		if (wood.amount < wood_amount) {
+			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(wood, wood_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+				
 		}
 		if (leather.amount < leather_amount) {
+			let [leather_left, secondMaterial] = materialNeeded(leather, leather_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(leather, leather_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${leather_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
+							
 		}
 		if (rope.amount < rope_amount) {
+			let [rope_left, thirdMaterial] = materialNeeded(rope, rope_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(rope, rope_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
 		}
 
 		if (!status) {
@@ -72,7 +78,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -87,7 +93,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${leather_amount} de cuero!`
+				message: `- ${leather_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["leather"]}!`
 			}
 		})
 
@@ -102,7 +108,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${rope_amount} de cuerda!`
+				message: `- ${rope_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["rope"]}!`
 			}
 		})
 
@@ -118,7 +124,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Upper body armor builded!"
+				message: language_gotted.survivalGameMenuRight.up_arm_build
 			}
 		})
     }
@@ -132,7 +138,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear una Armadura inferior a la vez!"
+					message: language_gotted.survivalGameMenuRight.down_arm_once
 				}
 			})
 			return;
@@ -148,20 +154,23 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		const rope = existsItem([...state.items], "rope");
 
 		if (wood.amount < wood_amount) {
+			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(wood, wood_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+				
 		}
 		if (leather.amount < leather_amount) {
+			let [leather_left, secondMaterial] = materialNeeded(leather, leather_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(leather, leather_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${leather_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
+							
 		}
 		if (rope.amount < rope_amount) {
+			let [rope_left, thirdMaterial] = materialNeeded(rope, rope_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(rope, rope_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
 		}
+
 
 		if (!status) {
 			notifys.forEach(el => dispatch({
@@ -185,7 +194,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -200,7 +209,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${leather_amount} de cuero!`
+				message: `- ${leather_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["leather"]}!`
 			}
 		})
 
@@ -215,7 +224,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${rope_amount} de cuerda!`
+				message: `- ${rope_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["rope"]}`
 			}
 		})
 
@@ -231,7 +240,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Greaves_leg_armor builded!"
+				message: language_gotted.survivalGameMenuRight.down_arm_build
 			}
 		})
     }
@@ -246,7 +255,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: "Solo puedes crear un Hacha de piedra a la vez!"
+					message: language_gotted.survivalGameMenuRight.stone_axe_once
 				}
 			})
 			return;
@@ -261,14 +270,16 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		const stone = existsItem([...state.items], "stone");
 
 		if (wood.amount < wood_amount) {
+			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(wood, wood_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+					
 		}
 		if (stone.amount < stone_amount) {
+			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, materialNeeded(stone, stone_amount)]
-			
+			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
+						
 		}
 
 		if (!status) {
@@ -293,7 +304,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} de madera!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -308,7 +319,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${stone_amount} de piedra!`
+				message: `- ${stone_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}!`
 			}
 		})
 
@@ -323,7 +334,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: "Stone axe builded!"
+				message: language_gotted.survivalGameMenuRight.stone_axe_once
 			}
 		})
 	}
