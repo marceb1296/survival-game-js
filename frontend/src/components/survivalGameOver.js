@@ -1,4 +1,4 @@
-import "../css/survivalGameOver.scss";
+import "../css/survivalGameNew_Over.scss";
 
 const SurvivalGameOver = () => {
     

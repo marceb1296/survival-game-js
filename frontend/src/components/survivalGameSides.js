@@ -34,7 +34,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${name}: - ${restLifeCraft} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["life"]}!`
+                    message: `${name}: - ${restLifeCraft} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["life"]}!`
                 }
             })
         }
@@ -48,7 +48,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
         dispatch({
             type: "ADD NOTIFY",
             payload: {
-                message: `${language_gotted.survivalGame["made"]} + ${playerDamage} ${restLifeCraft} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["damage"]}!`
+                message: `${language_gotted.survivalGame["made"]} + ${playerDamage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}!`
             } 
         })
 
@@ -69,7 +69,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `Has recibido + ${damage} de daño! => Armadura inferior`
+                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_lower}`
                 } 
             });
         } else if (existUperArmor) {
@@ -84,7 +84,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `Has recibido + ${damage} de daño! => Armadura superior`
+                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_up}`
                 } 
             });
         } else {
@@ -98,15 +98,17 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `Has recibido + ${damage} de daño!`
+                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}!`
                 } 
             });
         }
 
     }
     
-    const handleClickDel = async (type, id) => {
-    	
+    const handleClickDel = async (e, type, id) => {
+    
+        e.currentTarget.style.pointerEvents = "none";
+
         if (type === "tree") {
 
             let totalWood = woodAmount;
@@ -128,13 +130,13 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `Hacha de piedra: - ${restLifeCraft} de vida!`
+                        message: `${language_gotted.survivalGameNames.axe_stone}: - ${restLifeCraft} ${language_gotted.survivalGameSides.life}!`
                     }
                 })
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `Hacha de piedra: + ${axe_plus_stone} de piedra!`
+                        message: `${language_gotted.survivalGameNames.axe_stone}: + ${axe_plus_stone} ${language_gotted.survivalGameSides.plus_stone}!`
                     }
                 })
 
@@ -155,13 +157,13 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                     dispatch({
                         type: "ADD NOTIFY",
                         payload: {
-                            message: `Hacha de madera: - ${restLifeCraft} de vida!`
+                            message: `${language_gotted.survivalGameNames.axe_wood}: - ${restLifeCraft} ${language_gotted.survivalGameSides.life}!`
                         }
                     })
                     dispatch({
                         type: "ADD NOTIFY",
                         payload: {
-                            message: `Hacha de madera: + ${axe_plus_stone} de piedra!`
+                            message: `${language_gotted.survivalGameNames.axe_wood}: + ${axe_plus_stone} ${language_gotted.survivalGameSides.plus_stone}!`
                         }
                     })
     
@@ -179,7 +181,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `+ ${woodAmount} de madera!`
+                    message: `+ ${woodAmount} ${language_gotted.survivalGameSides.plus_wood}!`
                 }
             })
         } else if (type === "rock") {
@@ -201,13 +203,13 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `Pico: - ${restLifeCraft} de vida!`
+                        message: `Pico: - ${restLifeCraft} ${language_gotted.survivalGameSides.life}!`
                     }
                 })
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `Pico: + ${pickaxe_plus_amount} de piedra!`
+                        message: `Pico: + ${pickaxe_plus_amount} ${language_gotted.survivalGameSides.plus_stone}!`
                     }
                 })
 
@@ -217,7 +219,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `+ ${stoneAmount} de piedra!`
+                    message: `+ ${stoneAmount} ${language_gotted.survivalGameSides.plus_stone}!`
                 }
             })
             dispatch({
@@ -261,7 +263,9 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
             document.getElementById(`anm-container-${id}`).classList.toggle("active")
             await new Promise(r => setTimeout(r, 3000));
-            document.getElementById(`anm-container-${id}`).classList.toggle("active")
+            try {
+                document.getElementById(`anm-container-${id}`).classList.toggle("active")
+            } catch (e) {};
 
 			return;
 		}
@@ -269,7 +273,7 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: ["No hay animales cerca!"]
+				message: [language_gotted.survivalGameSides.no_anm]
 			} 
 		})
 
@@ -277,11 +281,11 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
         // max top 78%
         // max left 100%
-    const makeTree = (id, x, y) => <img key={id} onClick={() => handleClickDel("tree", id)} id={"tree-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/tree_${side}.png`} alt="tree"></img>;
+    const makeTree = (id, x, y) => <img key={id} onClick={(e) => handleClickDel(e, "tree", id)} id={"tree-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/tree_${side}.png`} alt="tree"></img>;
     
         // max top 84%
         // max right 100%
-    const makeRock = (id, x, y) => <img key={id} onClick={() => handleClickDel("rock", id)} id={"rock-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/rock_${side}.png`} alt="tree"></img>;
+    const makeRock = (id, x, y) => <img key={id} onClick={(e) => handleClickDel(e, "rock", id)} id={"rock-" + id} style={{[side]: x + "%", top: y + "%", transform: `translate(${side === "left" ? `-${x}%` : `${x}%`}, -${y}%)`}} src={`/survival/rock_${side}.png`} alt="tree"></img>;
 
     const makeAnm = ({id, pos_x, pos_y, name, life, totalLife}) => <div onClick={() => handleClickAnmKill(id)} className="anm-container" id={"anm-container-" + id} style={{[side]: pos_x + "%", top: pos_y + "%", transform: `translate(${side === "left" ? `-${pos_x}%` : `${pos_x}%`}, -${pos_y}%)`}}>
         <progress value={life} max={totalLife}></progress>

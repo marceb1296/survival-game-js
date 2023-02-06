@@ -7,7 +7,8 @@ export const language = {
                 life: "vida",
                 food: "comida",
                 damage: "daño",
-                made: "Hiciste"
+                made: "Hiciste",
+                taked: "Haz recibido"
             },
             survivalGameMenuCenter: {
                 escape: "Haz logrado escapar del",
@@ -38,12 +39,15 @@ export const language = {
                 down_arm_build: "Haz creado una Armadura Inferior!",
                 stone_axe_once: "Solo puedes crear una Hacha de Piedra a la vez!",
                 stone_axe_build: "Haz creado una Hacha de Piedra!"
+            },  
+            survivalGameSides: {
+                arm_lower: "Armadura inferior",
+                arm_up: "Armadura superior",
+                life: "de vida",
+                plus_stone: "de piedra",
+                plus_wood: "de madera",
+                no_anm: "No hay animales cerca"
             },
-            survivalGameNotify: {},
-            survivalGameOver: {},
-            survivalGamePlayer: {},
-            survivalGameSides: {},
-            survivalNewGame: {},
             survivalGameNames: {
                 axe_stone: "Hacha de Piedra",
                 axe_wood: "Hacha de Madera",
@@ -75,7 +79,8 @@ export const language = {
                 life: "life",
                 food: "food",
                 damage: "damage",
-                made: "You made"
+                made: "You made",
+                taked: "You have taken"
             },
             survivalGameMenuCenter: {
                 escape: "You have escaped from the",
@@ -84,9 +89,9 @@ export const language = {
                 bonfire_once: "You can build only one Bonfire at once!",
                 bonfire_build: "You have build a Bonfire!",
                 need_bonfire: "You need a Bonfire!",
-                not_meet: "You dont have enough meat!",
+                not_meat: "You dont have enough meat!",
                 cooked_meat: "You cooked a piece of meat!",
-                not_meet_eat: "You dont have meat to eat!",
+                not_meat_eat: "You dont have meat to eat!",
                 should_cooked: "i should have cooked...",
                 pickaxe_once: "You can build only one PickAxe at once!",
                 pickaxe_build: "You have build a Pickaxe!",
@@ -107,11 +112,14 @@ export const language = {
                 stone_axe_once: "You can build only one Stone Axe at once!",          
                 stone_axe_build: "You have build a Stone Axe!"
             },
-            survivalGameNotify: {},
-            survivalGameOver: {},
-            survivalGamePlayer: {},
-            survivalGameSides: {},
-            survivalNewGame: {},
+            survivalGameSides: {
+                arm_lower: "Lower armor",
+                arm_up: "Top armor",
+                life: "of life",
+                plus_stone: "of stone",
+                plus_wood: "of wood",
+                no_anm: "There's no animals nearby"
+            },
             survivalGameNames: {
                 axe_stone: "Stone Axe",
                 axe_wood: "Wood Axe",

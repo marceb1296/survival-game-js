@@ -96,7 +96,7 @@ const SurvivalGame = ({state, dispatch}) => {
                         type: "ADD NOTIFY",
                         payload: {
                             message:
-                            `+ ${value} ${language_gotted.survivalGameNames.of} ${language_gotted.survivalGameNames[key]}`
+                            `+ ${value} ${language_gotted.survivalGame.of} ${language_gotted.survivalGameNames[key]}`
                         }
                     })
                 })
@@ -144,7 +144,7 @@ const SurvivalGame = ({state, dispatch}) => {
     return (
         <div className={`survival-container ${(state.hour < 7 | state.hour > 18) && state.start_game ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
             { !state.start_game &&
-                <SurvivalNewGame load={state.load} dispatch={dispatch}/>
+                <SurvivalNewGame state={state} load={state.load} dispatch={dispatch}/>
             }
             <div className="survival-container-layouts">
                 <SurvivalGameSides state={state} dispatch={dispatch} side="left" />              

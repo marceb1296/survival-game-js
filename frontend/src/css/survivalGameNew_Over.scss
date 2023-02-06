@@ -1,0 +1,66 @@
+.survival-game-over, .survival-new-game {
+    transition: opacity 2s ease-in-out;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgb(0, 0, 0, .8), rgb(255, 0, 0, .6), rgb(0, 0, 0, .8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    & .lan-choose {
+        font-size: 1em;
+        position: relative;
+        display: flex;
+        height: 1.5em;
+        //background: linear-gradient(to right, black,rgb(176, 25, 25), black);
+        justify-content: space-around;
+        //border: 1px solid black;
+        width: 9rem;
+        border-radius: 5px;
+
+        & .lan-op {
+            transition: opacity 1s ease-in-out;
+        }
+
+        &::after {
+            content: "es";
+            left: 9%;
+            text-align: center;
+            position: absolute;
+            width: 30%;
+            border-radius: 40%;
+            background: rgba(0, 0, 255, .5);
+            height: 100%;
+            transition: left 1s ease-in-out;
+            justify-content: end;
+
+        }
+
+        &.active::after {
+            content: "en";
+            left: 60%;
+        }
+    }
+    
+    & label {
+        font-size: 3em;
+        color: white;
+        text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+    }
+    
+    & button {
+        padding-inline: 2em;
+        font-size: 1em;
+        text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+                1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+    }
+    
+    &.fadeOut {
+        animation: fadeOut 2s ease-in-out;
+    }
+}

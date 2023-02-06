@@ -108,7 +108,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 dispatch({
                     type: "ADD NOTIFY",
                     payload: {
-                        message: `+ 2 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame["life"]}!`
+                        message: `+ 2 ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["life"]}!`
                     }
                 })
             }, 3000);

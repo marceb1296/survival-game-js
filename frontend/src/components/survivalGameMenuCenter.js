@@ -141,13 +141,13 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		if (wood.amount < wood_amount) {
 			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${wood_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 			
 		}
 		if (stone.amount < stone_amount) {
 			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${stone_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
 			
 		}
 
@@ -173,7 +173,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 
@@ -188,7 +188,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["stone"]}`
 			}
 		})
 
@@ -249,7 +249,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- 1 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames.meat}`
+				message: `- 1 ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames.meat}`
 			}
 		})
 
@@ -264,7 +264,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `+ 1 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames.cooked_meat}`
+				message: `+ 1 ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames.cooked_meat}`
 			}
 		})
 
@@ -286,7 +286,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `${language_gotted.survivalGameNames.bonfire}: - ${restLifeCraft} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame.life}!`
+				message: `${language_gotted.survivalGameNames.bonfire}: - ${restLifeCraft} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame.life}!`
 			}
 		})
 
@@ -299,8 +299,10 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 
 		const hasFood = existsItem(state.items, "meat");
 		const hasCockedFood = existsItem(state.items, "cooked meat");
+
 		
 		if (hasFood.amount < 1 && hasCockedFood.amount < 1) {
+
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
@@ -321,7 +323,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: `- 1 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames.cooked_meat}!`
+					message: `- 1 ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames.cooked_meat}!`
 				}
 			})
 			
@@ -338,7 +340,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: `+ ${foodAmount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame.food}!`
+					message: `+ ${foodAmount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame.food}!`
 				}
 			})
 
@@ -356,7 +358,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: `- 1 ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames.meat}!`
+					message: `- 1 ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames.meat}!`
 				}
 			})
 
@@ -367,7 +369,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 				const rest_life = rest_life_by_rotten_food();
 				const lifeAmount = state.life - rest_life
 				let notifys = [
-					`- ${rest_life} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGame.life}`,
+					`- ${rest_life} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame.life}`,
 					language_gotted.survivalGameMenuCenter.should_cooked
 				];
 
@@ -401,7 +403,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "ADD NOTIFY",
 				payload: {
-					message: `+ ${foodAmount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames.meat}!`
+					message: `+ ${foodAmount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames.meat}!`
 				}
 			})
 
@@ -436,13 +438,13 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		if (wood.amount < wood_amount) {
 			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${wood_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 			
 		}
 		if (stone.amount < stone_amount) {
 			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${stone_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
 			
 		}
 
@@ -468,7 +470,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -483,7 +485,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${stone_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}!`
+				message: `- ${stone_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["stone"]}!`
 			}
 		})
 

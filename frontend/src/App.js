@@ -3,7 +3,7 @@ import SurvivalGame from "./components/survivalGame";
 import { animals, get_anm } from './dataValues/survivalGameValues';
 
 const initialValue = {
-  language: "en",
+  language: localStorage.getItem("language") || "es",
   start_game: false,
   game_over: false,
   load: false,
@@ -58,6 +58,13 @@ function reducer(state, action) {
       const loadGame = JSON.parse(localStorage.getItem("survival_game"))
       return {
         ...loadGame
+      }
+    case "SET LANGUAGE":
+
+    localStorage.setItem("language", payload.language)
+      return {
+        ...state,
+        language: payload.language
       }
     case "SET LIFE":
       return {

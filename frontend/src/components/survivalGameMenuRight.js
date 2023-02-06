@@ -41,19 +41,19 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		if (wood.amount < wood_amount) {
 			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${wood_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 				
 		}
 		if (leather.amount < leather_amount) {
 			let [leather_left, secondMaterial] = materialNeeded(leather, leather_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${leather_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${leather_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
 							
 		}
 		if (rope.amount < rope_amount) {
 			let [rope_left, thirdMaterial] = materialNeeded(rope, rope_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${rope_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
 		}
 
 		if (!status) {
@@ -78,7 +78,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -93,7 +93,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${leather_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["leather"]}!`
+				message: `- ${leather_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["leather"]}!`
 			}
 		})
 
@@ -108,7 +108,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${rope_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["rope"]}!`
+				message: `- ${rope_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["rope"]}!`
 			}
 		})
 
@@ -156,19 +156,19 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		if (wood.amount < wood_amount) {
 			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${wood_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 				
 		}
 		if (leather.amount < leather_amount) {
 			let [leather_left, secondMaterial] = materialNeeded(leather, leather_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${leather_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${leather_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[secondMaterial]}!`];
 							
 		}
 		if (rope.amount < rope_amount) {
 			let [rope_left, thirdMaterial] = materialNeeded(rope, rope_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${rope_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[thirdMaterial]}!`];
 		}
 
 
@@ -194,7 +194,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
+				message: `- ${wood_amount} ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -209,7 +209,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${leather_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["leather"]}!`
+				message: `- ${leather_amount} ${leather_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["leather"]}!`
 			}
 		})
 
@@ -224,7 +224,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${rope_amount} ${rope_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["rope"]}`
+				message: `- ${rope_amount} ${rope_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["rope"]}`
 			}
 		})
 
@@ -272,13 +272,13 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		if (wood.amount < wood_amount) {
 			let [wood_left, firstMaterial] = materialNeeded(wood, wood_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${wood_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${wood_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[firstMaterial]}!`];
 					
 		}
 		if (stone.amount < stone_amount) {
 			let [stone_left, secondMaterial] = materialNeeded(stone, stone_amount)
 			status = false;
-			notifys = [...notifys, `${language_gotted.survivalGameMaterial.need} ${stone_left} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
+			notifys = [...notifys, `${language_gotted.survivalGameMaterials.need} ${stone_left} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames[secondMaterial]}!`]
 						
 		}
 
@@ -304,7 +304,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${wood_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["wood"]}!`
+				message: `- ${wood_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["wood"]}!`
 			}
 		})
 		
@@ -319,7 +319,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: `- ${stone_amount} ${language_gotted.survivalGameMaterial.of} ${language_gotted.survivalGameNames["stone"]}!`
+				message: `- ${stone_amount} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGameNames["stone"]}!`
 			}
 		})
 
