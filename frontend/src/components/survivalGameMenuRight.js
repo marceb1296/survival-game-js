@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import "../css/survivalGameMenuRight.scss";
 import { build_axe_stone, build_greaves_leg_armor_cost, build_upper_body_armor_cost, shield_greaves_leg_armor, shield_upper_body_armor } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
@@ -6,7 +7,12 @@ import { language } from "../lan/language";
 const SurvivalGameMenuRight = ({state, dispatch}) => {
 
 	const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    // set language
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
 
     const disableBtns = async () => {
 		dispatch({
@@ -341,9 +347,9 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 
     return (
         <div className="survival-menu-right">
-            <button disabled={state.btns} onClick={handleClickUpper}>{ state.btns ? state.layer_countdown : "Build upper armor" }</button>
-            <button disabled={state.btns} onClick={handleClickLeg}>{ state.btns ? state.layer_countdown : "Build leg armor" }</button>
-			<button disabled={state.btns} onClick={handleClickAxe}>{ state.btns ? state.layer_countdown : "Build stone axe" }</button>
+            <button disabled={state.btns} onClick={handleClickUpper}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_u_armor }</button>
+            <button disabled={state.btns} onClick={handleClickLeg}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_l_armor }</button>
+			<button disabled={state.btns} onClick={handleClickAxe}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_axe_stone }</button>
         </div>
     );
 }

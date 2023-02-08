@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../css/survivalGamePlayer.scss";
 import { language } from "../lan/language";
 
@@ -6,7 +6,12 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
 
 
     const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+
+    // set language
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
 
     // handle minutes
     useEffect(() => {
@@ -151,12 +156,12 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 <div className="survival-state">
                     <p>
                         <label>
-                            <span>Life: </span>
+                            <span>{language_gotted.survivalGameNames.life}: </span>
                             <progress value={state.life} max="100"></progress>
                             <span>{state.life}%</span>
                         </label>
                         <label>
-                            <span>Food: </span> 
+                            <span>{language_gotted.survivalGameNames.food}: </span> 
                             <progress value={state.food} max="100"></progress>
                             <span>{state.food}%</span>
                         </label>

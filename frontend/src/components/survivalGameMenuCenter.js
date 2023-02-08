@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import "../css/survivalGameMenuMain.scss";
 import {
     probability_tree,
@@ -16,8 +17,12 @@ import { language } from "../lan/language";
 const SurvivalGameMenuMain = ({state, dispatch}) => {
 	
 	const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
-
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
+    
     // events
 	const disableBtns = async () => {
 		dispatch({
@@ -507,11 +512,11 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
     
     return (
         <div className="survival-menu-main">
-            <button disabled={state.btns} onClick={handleClickBonfire}>{ state.btns ? state.layer_countdown : "Bonfire" }</button>
-            <button disabled={state.btns} onClick={handleClickCook}>{ state.btns ? state.layer_countdown : "Cook" }</button>
-            <button disabled={state.btns} onClick={handleClickEn}>{ state.btns ? state.layer_countdown : "Env" }</button>
-            <button disabled={state.btns} onClick={handleClickEat}>{ state.btns ? state.layer_countdown : "Eat" }</button>
-            <button disabled={state.btns} onClick={handleClickPickaxe}>{ state.btns ? state.layer_countdown : "Build pickaxe" }</button>
+            <button disabled={state.btns} onClick={handleClickBonfire}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.bonfire }</button>
+            <button disabled={state.btns} onClick={handleClickCook}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.cook }</button>
+            <button disabled={state.btns} onClick={handleClickEn}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.forward }</button>
+            <button disabled={state.btns} onClick={handleClickEat}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.eat }</button>
+            <button disabled={state.btns} onClick={handleClickPickaxe}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_pickaxe }</button>
            
             
         </div>

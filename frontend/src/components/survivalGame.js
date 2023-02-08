@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../css/survivalGameApp.scss";
 import "../css/survivalGameCenter.scss";
 import SurvivalGameCrafts from "./survivalGameCrafts";
@@ -14,8 +14,13 @@ import { language } from "../lan/language";
 const SurvivalGame = ({state, dispatch}) => {
     
     const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
-
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    // set language
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
+    
     // del item
     useEffect(() => {
         

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import "../css/survivalGameMenuLeft.scss";
 import { build_axe_wood, build_knife, build_knife_wood } from "../dataValues/survivalGameValues";
 import { existsCraft, existsItem, materialNeeded } from '../helpers/SurvivalHelper';
@@ -6,7 +7,13 @@ import { language } from "../lan/language";
 const SurvivalGameMenuLeft = ({state, dispatch}) => {
 
 	const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    // set language
+    useEffect(() => {
+        //console.log("change")
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
 
     // events
 	const disableBtns = async () => {
@@ -239,9 +246,9 @@ const SurvivalGameMenuLeft = ({state, dispatch}) => {
 
     return (
         <div className="survival-menu-left">
-            <button disabled={state.btns} onClick={handleClickKnife}>{ state.btns ? state.layer_countdown : "Build knife" }</button>
-            <button disabled={state.btns} onClick={handleClickKnifeWood}>{ state.btns ? state.layer_countdown : "Build wood knife" }</button>
-			<button disabled={state.btns} onClick={handleClickAxe}>{ state.btns ? state.layer_countdown : "Build axe" }</button>
+            <button disabled={state.btns} onClick={handleClickKnife}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_knife }</button>
+            <button disabled={state.btns} onClick={handleClickKnifeWood}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_w_knife }</button>
+			<button disabled={state.btns} onClick={handleClickAxe}>{ state.btns ? state.layer_countdown : language_gotted.survivalGameNames.b_axe }</button>
         </div>
     );
 }

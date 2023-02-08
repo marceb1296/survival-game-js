@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import {
 	woodAmount,
 	stoneAmount,
@@ -17,7 +18,12 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
 
     const { survival_game } = language;
-    const language_gotted = survival_game[state.language];
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    // set language
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
 
     const hitAnm = async ({life, damage}, playerDamage, lifeTool, name) => {
 

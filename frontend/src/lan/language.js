@@ -8,7 +8,9 @@ export const language = {
                 food: "comida",
                 damage: "daño",
                 made: "Hiciste",
-                taked: "Haz recibido"
+                taked: "Haz recibido",
+                new: "Partida Nueva",
+                load: "Cargar Partida"
             },
             survivalGameMenuCenter: {
                 escape: "Haz logrado escapar del",
@@ -49,6 +51,18 @@ export const language = {
                 no_anm: "No hay animales cerca"
             },
             survivalGameNames: {
+                life: "Vida",
+                food: "Comida",
+                b_pickaxe: "Armar Pico",
+                b_knife: "Armar Cuchillo",
+                b_w_knife: "Armar Cuchillo de Madera",
+                b_axe: "Armar Hacha",
+                b_u_armor: "Armar Armadura Superior",
+                b_l_armor: "Armar Armadura Inferior",
+                b_axe_stone: "Armar Hacha de Madera",
+                cook: "Cocinar",
+                eat: "Comer",
+                forward: "Moverse",
                 axe_stone: "Hacha de Piedra",
                 axe_wood: "Hacha de Madera",
                 bonfire: "Fogata",
@@ -80,7 +94,9 @@ export const language = {
                 food: "food",
                 damage: "damage",
                 made: "You made",
-                taked: "You have taken"
+                taked: "You have taken",
+                new: "New Game",
+                load: "Load Game"
             },
             survivalGameMenuCenter: {
                 escape: "You have escaped from the",
@@ -121,6 +137,18 @@ export const language = {
                 no_anm: "There's no animals nearby"
             },
             survivalGameNames: {
+                life: "Life",
+                food: "Food",
+                b_pickaxe: "Build PickAxe",
+                b_knife: "Build Knife",
+                b_w_knife: "Build Wood Knife",
+                b_axe: "Build Axe",
+                b_u_armor: "Build Upper Armor",
+                b_l_armor: "Build Leg Armor",
+                b_axe_stone: "Build Stone Axe",
+                cook: "Cook",
+                eat: "Eat",
+                forward: "Go forward",
                 axe_stone: "Stone Axe",
                 axe_wood: "Wood Axe",
                 bonfire: "Bonfire",

@@ -1,8 +1,19 @@
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import "../css/survivalGameNew_Over.scss";
+import { language } from "../lan/language";
+
 
 const SurvivalNewGame = ({state, load, dispatch}) => {
     
+    const { survival_game } = language;
+    //const language_gotted = survival_game[state.language];
+    const [language_gotted, setLanguageGotted] = useState(survival_game[state.language])
+    
+    // set language
+    useEffect(() => {
+        setLanguageGotted(survival_game[state.language])
+    }, [survival_game, state.language, setLanguageGotted])
+
     const animation = useRef();
     const gameLoaded = JSON.parse(localStorage.getItem("survival_game"));
 
@@ -42,6 +53,7 @@ const SurvivalNewGame = ({state, load, dispatch}) => {
                     language: "en"
                 }
             })
+            setLanguageGotted(survival_game["en"])
             setEn(0);
             setEs(1);
         } else {
@@ -51,6 +63,7 @@ const SurvivalNewGame = ({state, load, dispatch}) => {
                     language: "es"
                 }
             })
+            setLanguageGotted(survival_game["es"])
             setEn(1);
             setEs(0);
         }
@@ -66,9 +79,9 @@ const SurvivalNewGame = ({state, load, dispatch}) => {
                     en
                 </span>
             </label>
-            <button onClick={newGame}>New Game</button>
+            <button onClick={newGame}>{language_gotted.survivalGame.new}</button>
             { gameLoaded !== null && gameLoaded.load &&
-                <button onClick={loadGame}>Load Game</button>
+                <button onClick={loadGame}>{language_gotted.survivalGame.load}</button>
             }
         </div>
     )
