@@ -16,9 +16,8 @@ const SurvivalNewGame = ({state, load, dispatch}) => {
 
     const animation = useRef();
     const gameLoaded = JSON.parse(localStorage.getItem("survival_game"));
-
-    const [es, setEs] = useState(state.language == "es" ? 0 : 1);
-    const [en, setEn]= useState(state.language == "en" ? 0 : 1);
+    const [es, setEs] = useState(state.language === "es" ? 0 : 1);
+    const [en, setEn]= useState(state.language === "en" ? 0 : 1);
     
     const newGame = async (e) => {
         animation.current.classList.toggle("fadeOut");
@@ -71,7 +70,7 @@ const SurvivalNewGame = ({state, load, dispatch}) => {
 
     return (
         <div ref={animation} className="survival-new-game">
-            <label onClick={setLan} className={state.language == "es" ? "lan-choose": "lan-choose active"}>
+            <label onClick={setLan} className={state.language === "es" ? "lan-choose": "lan-choose active"}>
                 <span className="lan-op" style={{opacity: es}}>
                     es
                 </span>

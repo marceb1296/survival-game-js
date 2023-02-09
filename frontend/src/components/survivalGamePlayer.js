@@ -131,7 +131,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
 
         
     
-    }, [state.food, state.life, state.start_game, dispatch]);
+    }, [state.food, state.life, state.start_game, dispatch, language_gotted]);
 
 
     return (

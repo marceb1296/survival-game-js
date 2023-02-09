@@ -262,7 +262,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD ITEM",
 			payload: {
-				item: "cooked meat",
+				item: "cooked_meat",
 				amount: 1
 			}
 		})

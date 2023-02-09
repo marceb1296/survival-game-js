@@ -340,7 +340,7 @@ const SurvivalGameMenuRight = ({state, dispatch}) => {
 		dispatch({
 			type: "ADD NOTIFY",
 			payload: {
-				message: language_gotted.survivalGameMenuRight.stone_axe_once
+				message: language_gotted.survivalGameMenuRight.stone_axe_build
 			}
 		})
 	}

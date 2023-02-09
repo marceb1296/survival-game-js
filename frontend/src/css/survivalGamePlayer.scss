@@ -63,6 +63,7 @@
                 color: white;
                 text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
                    1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+                
                   
             }
         }
@@ -80,6 +81,18 @@
             color: white;
             text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
             1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+        }
+    }
+}
+
+.no-night {
+    & .survival-player {
+        & .survival-player-container {
+            & .survival-materials {
+                & label {
+                    transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+                }
+            }
         }
     }
 }

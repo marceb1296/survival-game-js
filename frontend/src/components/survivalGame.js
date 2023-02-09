@@ -70,7 +70,7 @@ const SurvivalGame = ({state, dispatch}) => {
 
         })
         
-    }, [state.crafts, state.language, survival_game, dispatch]);
+    }, [state.crafts, language_gotted.survivalGameNames, dispatch]);
 
     // del anm
     useEffect(() => {
@@ -124,7 +124,7 @@ const SurvivalGame = ({state, dispatch}) => {
             }
         }
     
-    }, [state.anm, dispatch, survival_game, state.language]);
+    }, [state.anm, dispatch, language_gotted, state.language]);
 
     
     // autosave every 4 s
