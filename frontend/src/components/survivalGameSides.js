@@ -33,14 +33,14 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "REST CRAFT LIFE",
                 payload: {
-                    craft: name,
+                    craft: language_gotted.survivalGameNames[name],
                     life: lifeTool - restLifeCraft
                 }
             })
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${name}: - ${restLifeCraft} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["life"]}!`
+                    message: `${language_gotted.survivalGameNames[name]}: - ${restLifeCraft} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["life"]}!`
                 }
             })
         }

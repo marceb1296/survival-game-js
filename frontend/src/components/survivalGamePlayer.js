@@ -140,13 +140,13 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 <div className="survival-materials">
                     <p>
                         { state.items.map((item, index) => <label key={index}>
-                            <span>{item.name}: </span>
+                            <span>{language_gotted.survivalGameNames[item.name]}: </span>
                             <span>{item.amount}</span>
                         </label>)
 
                         }
                         { state.crafts.map((item, index) => <label key={index}>
-                            <span>{item.name}: </span>
+                            <span>{language_gotted.survivalGameNames[item.name]}: </span>
                             <span>{item.amount}</span>
                         </label>)
 
