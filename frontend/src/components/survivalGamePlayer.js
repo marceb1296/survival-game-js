@@ -14,6 +14,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
     }, [survival_game, state.language, setLanguageGotted])
 
     // handle minutes
+    /*
     useEffect(() => {
         if (state.start_game && !state.game_over) {
             
@@ -44,7 +45,21 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
             return () => clearInterval(minutesInterval)
         }
     }, [state.game_over, state.start_game, state.minutes, state.hour, dispatch]);
-
+    */
+    
+    useEffect(() => {
+        if (state.start_game && !state.game_over) {
+            
+            const minutesInterval = setInterval(() => {
+                dispatch({
+                    type: "SET TIME"
+                })
+            }, 40);
+    
+            return () => clearInterval(minutesInterval)
+        }
+    }, [state.start_game, state.game_over, dispatch])
+    
     // handle food
     useEffect(() => {
         if (state.start_game) {
@@ -169,7 +184,10 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 </div>
             </div>
             <div className='survival-player-timer'>
-                <span>{state.hour}:{state.minutes < 10 ? `0${state.minutes}` : state.minutes}</span>
+            
+                { /*<span>{state.hour}:{state.minutes < 10 ? `0${state.minutes}` : state.minutes}</span>
+                */}
+                <span>{state.time.toLocaleString()}</span>
             </div>
         </div>
     );

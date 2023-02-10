@@ -74,6 +74,7 @@
         text-align: center;
         
         & span {
+            transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
             width: 15%;
             text-align: left;
             font-weight: bold;
@@ -85,21 +86,35 @@
     }
 }
 
-.no-night {
-    & .survival-player {
-        & .survival-player-container {
-            & .survival-materials {
-                & label {
+.nigth .survival-player {
+    & .survival-player-container {
+        & .survival-state {
+            & label {
+                & span {
                     transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+                    color: black;
+                    text-shadow: 2px 0 white, -2px 0 white, 0 2px white, 0 -2px white,
+                   1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
                 }
             }
         }
-    }
-}
-
-.nigth .survival-player span, .nigth .survival-player .survival-player-container .survival-state label span {
-    transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
-    color: black;
-    text-shadow: 2px 0 white, -2px 0 white, 0 2px white, 0 -2px white,
+        
+        & .survival-materials {
+            & label {
+                transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+                color: black;
+                text-shadow: 2px 0 white, -2px 0 white, 0 2px white, 0 -2px white,
                    1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
+            }
+        }
+    }
+    
+    & .survival-player-timer {
+        & span {
+            transition: color 4s ease-in-out, text-shadow 4s ease-in-out;
+            color: black;
+            text-shadow: 2px 0 white, -2px 0 white, 0 2px white, 0 -2px white,
+                   1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
+        }
+    }
 }

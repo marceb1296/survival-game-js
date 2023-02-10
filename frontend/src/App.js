@@ -10,6 +10,7 @@ const initialValue = {
   layer_countdown: 3,
   life: 100,
   food: 100,
+  time: new Date("1996-01-14T00:00:00"),
   hour: 20,
   minutes: 0,
   btns: false,
@@ -96,6 +97,11 @@ function reducer(state, action) {
         ...state,
         minutes: payload.minutes
       }
+    case "SET TIME":
+        return {
+            ...state,
+            time: new Date(state.time.getTime() + 6000)
+        }
     case "SET TREE":
       return {
         ...state,
