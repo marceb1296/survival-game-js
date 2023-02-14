@@ -147,7 +147,7 @@ const SurvivalGame = ({state, dispatch}) => {
     
     
     return (
-        <div className={`survival-container ${(state.time.getHours() < 7 || state.time.getHours() > 18) && state.start_game ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
+        <div className={`survival-container ${(new Date(state.time).getHours() < 7 || new Date(state.time).getHours() > 18) && state.start_game ? "nigth" : "no-night"}`} style={{backgroundImage: `url("survival/possible-bg.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
             { !state.start_game &&
                 <SurvivalNewGame state={state} load={state.load} dispatch={dispatch}/>
             }

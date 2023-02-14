@@ -187,7 +187,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
             
                 { /*<span>{state.hour}:{state.minutes < 10 ? `0${state.minutes}` : state.minutes}</span>
                 */}
-                <span>{state.time.toLocaleString()}</span>
+                <span>{new Date(state.time).toLocaleString()}</span>
             </div>
         </div>
     );

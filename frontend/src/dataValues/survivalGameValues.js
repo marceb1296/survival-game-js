@@ -82,7 +82,7 @@ export const bonfire_build = [10, 10];
 // Probabilitys
 export const probability_get_from_anm = () => randomItem([0, 1]);
 export const probability_eat_damage = () => randomItem([0, 1, 0]);
-export const probability_anm = () => randomItem([0, 1, 0, 0, 0]);
+export const probability_anm = () => randomItem([1, 1, 1, 1, 1]);
 export const probability_cottage = () => randomItem([0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
 export const probability_tree = () => randomItem([0, 0, 1, 0, 0, 2, 0, 0, 1, 0]);
 export const probability_rock = () => randomItem([0, 0, 0, 0, 0, 1, 0, 0, 0, 1]);

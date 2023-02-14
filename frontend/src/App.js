@@ -8,9 +8,9 @@ const initialValue = {
   game_over: false,
   load: false,
   layer_countdown: 3,
-  life: 1,
-  food: 1,
-  time: new Date("1996-01-14T00:00:00"),
+  life: 100,
+  food: 100,
+  time: new Date("1996-01-14T00:00:00").getTime(),
   hour: 20,
   minutes: 0,
   btns: false,
@@ -100,7 +100,7 @@ function reducer(state, action) {
     case "SET TIME":
         return {
             ...state,
-            time: new Date(state.time.getTime() + 6000)
+            time: state.time + 6000
         }
     case "SET TREE":
       return {

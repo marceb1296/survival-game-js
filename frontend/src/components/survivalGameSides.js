@@ -62,7 +62,19 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
 
         const {exist: existUperArmor, life: lifeUperArmor} = existsCraft(state.crafts, "upper_body_armor");
         const {exist: existLowerArmor, life: lifeLowerArmor} = existsCraft(state.crafts, "greaves_leg_armor");
-
+        
+        let isNight = false;
+        let nightDamage = 0;
+        let showDamage = 0;
+        let parseTime = new Date(state.time).getHours();
+    
+        if (parseTime < 7 || parseTime > 18) {
+            isNight = true;
+            nightDamage = Math.round((50 * damage) / 100);
+            showDamage = damage;
+            damage += nightDamage;
+        }
+        
         if (existLowerArmor) {
 
             dispatch({
@@ -75,9 +87,18 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_lower}`
+                    message: `${language_gotted.survivalGame.taked} + ${isNight ? showDamage : damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_lower}`
                 } 
             });
+            
+            if (isNight) {
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `${language_gotted.survivalGame.night}: + ${nightDamage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_lower}`
+                    } 
+                });
+            }
         } else if (existUperArmor) {
 
             dispatch({
@@ -90,9 +111,18 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_up}`
+                    message: `${language_gotted.survivalGame.taked} + ${isNight ? showDamage : damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_up}`
                 } 
             });
+            
+            if (isNight) {
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `${language_gotted.survivalGame.night}: + ${nightDamage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}! => ${language_gotted.survivalGameSides.arm_up}`
+                    } 
+                });
+            }
         } else {
 
             dispatch({
@@ -104,9 +134,18 @@ const SurvivalGameSides = ({state, dispatch, side}) => {
             dispatch({
                 type: "ADD NOTIFY",
                 payload: {
-                    message: `${language_gotted.survivalGame.taked} + ${damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}!`
+                    message: `${language_gotted.survivalGame.taked} + ${isNight ? showDamage : damage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}!`
                 } 
             });
+            
+            if (isNight) {
+                dispatch({
+                    type: "ADD NOTIFY",
+                    payload: {
+                        message: `${language_gotted.survivalGame.night} + ${nightDamage} ${language_gotted.survivalGameMaterials.of} ${language_gotted.survivalGame["damage"]}!`
+                    } 
+                });
+            }
         }
 
     }

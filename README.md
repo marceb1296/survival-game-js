@@ -22,7 +22,7 @@ Mini survival game writed in javascript
         
         $ source myenv/bin/activate
 
-    install node with pip
+    Install node with pip
 
         $ pip install nodeenv
         
@@ -32,4 +32,39 @@ Mini survival game writed in javascript
 
         $ nodeenv --version
         0.6.5
+    
+    Install package & start project
+   
+        $ cd survival-game-js
 
+        $ npm i --production=false
+
+        $ npm start
+
+    Open the given url by console
+
+## 2. Game
+
+1. ### Tools
+ 
+    - When you use a Tool, the life of itself will be reduced randomly
+    - You will receive extra materials with the correct tool
+
+2. ### Materials
+
+   - Threes have a 30% probability to show up.
+   - Rocks have a 20% probability to show up
+   - Material obtained by killing an animal is 50% probability
+
+3. ### Animals
+
+    - Animals have a 20% probability to  show up
+    - if there's an animal and you go forward, you will receive extra damage
+
+4. ### Food
+
+    - Raw meat has a 50% probability to make you seek
+
+5. ### Night
+
+    - You will receive 50% more damage from animals 

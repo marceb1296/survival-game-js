@@ -9,6 +9,7 @@ export const language = {
                 damage: "daño",
                 made: "Hiciste",
                 taked: "Haz recibido",
+                night: "Noche",
                 new: "Partida Nueva",
                 end: "Fin De La Partida",
                 load: "Cargar Partida"
@@ -96,6 +97,7 @@ export const language = {
                 damage: "damage",
                 made: "You made",
                 taked: "You have taken",
+                night: "Night",
                 new: "New Game",
                 end: "Game Over",
                 load: "Load Game"
