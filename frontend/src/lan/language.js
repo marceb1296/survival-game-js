@@ -10,6 +10,7 @@ export const language = {
                 made: "Hiciste",
                 taked: "Haz recibido",
                 new: "Partida Nueva",
+                end: "Fin De La Partida",
                 load: "Cargar Partida"
             },
             survivalGameMenuCenter: {
@@ -96,6 +97,7 @@ export const language = {
                 made: "You made",
                 taked: "You have taken",
                 new: "New Game",
+                end: "Game Over",
                 load: "Load Game"
             },
             survivalGameMenuCenter: {

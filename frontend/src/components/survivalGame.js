@@ -161,7 +161,7 @@ const SurvivalGame = ({state, dispatch}) => {
             <SurvivalGameCrafts state={state}/>
             <SurvivalGameNotify state={state} dispatch={dispatch}/>
             { state.life < 1 &&
-                <SurvivalGameOver />
+                <SurvivalGameOver state={state}/>
             }
         </div>
     );

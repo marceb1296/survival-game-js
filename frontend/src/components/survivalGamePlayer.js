@@ -54,7 +54,7 @@ const SurvivalGamePlayer = ({state, dispatch}) => {
                 dispatch({
                     type: "SET TIME"
                 })
-            }, 40);
+            }, 30);
     
             return () => clearInterval(minutesInterval)
         }

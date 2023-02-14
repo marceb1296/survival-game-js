@@ -303,7 +303,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 		disableBtns();
 
 		const hasFood = existsItem(state.items, "meat");
-		const hasCockedFood = existsItem(state.items, "cooked meat");
+		const hasCockedFood = existsItem(state.items, "cooked_meat");
 
 		
 		if (hasFood.amount < 1 && hasCockedFood.amount < 1) {
@@ -321,7 +321,7 @@ const SurvivalGameMenuMain = ({state, dispatch}) => {
 			dispatch({
 				type: "REST ITEM",
 				payload: {
-					name: "cooked meat",
+					name: "cooked_meat",
 					amount: 1
 				}
 			})
