@@ -35,7 +35,7 @@ Mini survival game writed in javascript
     
     Install package & start project
    
-        $ cd survival-game-js
+        $ cd survival-game-js/frontend
 
         $ npm i --production=false
 
