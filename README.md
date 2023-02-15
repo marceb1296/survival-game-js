@@ -52,7 +52,7 @@ Mini survival game writed in javascript
 
 2. ### Materials
 
-   - Threes have a 30% probability to show up.
+   - Trees have a 30% probability to show up.
    - Rocks have a 20% probability to show up
    - Material obtained by killing an animal is 50% probability
 
