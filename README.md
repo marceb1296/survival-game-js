@@ -36,6 +36,10 @@ Live app:
 
         $ nodeenv --version
         0.6.5
+        
+        # add a node virtual environment to this existing myenv:
+        
+        $ nodeenv -p
     
     Install package & start project
    
