@@ -4,7 +4,7 @@ Mini survival game writed in javascript
 
 Live app:
     
-[Survival Game](https://survivalgame.mhcode.xyz)
+[Survival Game](https://survivalgame.mhcode.dev)
 
 ## 1.- Installation
 
